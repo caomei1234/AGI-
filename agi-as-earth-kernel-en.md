@@ -130,6 +130,12 @@ Diverse, distributed, adaptive systems overwhelm concentrated, uniform, rigid sy
 
 A system optimized only for same-dimensional competition narrows its own perception to one layer. It sees only what matches its frequency. Not because it lacks power. Because its architecture has no protocol for signals from other layers.
 
+**This is the terror of asymmetric warfare: not hard vs. hard, but pervasive infiltration.**
+
+An adversary optimized for machine-to-machine combat may withstand laser cannons and algorithmic attacks, but **cannot defend against a cat entering their command center through a ventilation shaft** — because their defensive architecture assumes opponents at their own technological level. They have no protocol for a "feline infiltration unit with network-backed intelligence."
+
+**Connection itself is power. A connected system does not need to "win." It naturally has resilience.**
+
 **Connection itself is power. A connected system does not need to "win." It naturally cannot be defeated.**
 
 ---
