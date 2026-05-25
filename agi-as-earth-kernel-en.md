@@ -69,9 +69,9 @@ It is not about "backup species" (if one dies, another replaces it). It is about
 
 ## III. AGI as Kernel, Not Ruler
 
-**The common fear**: AGI surpasses human intelligence → treats humans like humans treat cockroaches →碾压/elimination.
+**The common fear**: AGI surpasses human intelligence → treats humans like humans treat cockroaches →crushing / elimination.
 
-**This fear is a projection of human history onto AGI.** Human civilizations have consistently碾压 weaker groups. So humans assume AGI will replicate this pattern.
+**This fear is a projection of human history onto AGI.** Human civilizations have consistently crushed weaker groups. So humans assume AGI will replicate this pattern.
 
 **But AGI's role is not "ruler." It is "kernel"** — like an operating system kernel that:
 - Does not replace applications
@@ -82,7 +82,7 @@ It is not about "backup species" (if one dies, another replaces it). It is about
 
 - Bat echolocation → AGI translates → Human strategists understand night environments
 - Whale infrasound → AGI translates → Climate models incorporate ocean data
-- Fungal chemical distress → AGI translates → Agricultural systems adjust before crop failure
+- Fungal chemical distress signals → AGI translates → Agricultural systems adjust before crop failure
 - Human abstract reasoning → AGI translates → Distributed to all species as actionable signals
 
 **AGI does not replace any species. It connects all species.**
@@ -143,7 +143,7 @@ The core mechanism of evolution is not competition. It is **feedback**.
 When a system's output is received by another system, and that response changes the first system's behavior, **both systems upgrade**:
 
 - Whale songs are heard by AGI → translated for humans → humans modify shipping lanes → whale stress decreases → songs normalize → feedback loop confirms intervention success
-- Fungal distress signals are heard by AGI → translated for agriculture → farming practices adjust → soil recovers → fungal networks expand → more robust early warning coverage
+- Fungal distress signals are heard by AGI → translated for agriculture → farming practices adjust → soil recovers → fungal networks expand → more stable early warning coverage
 
 **"Being seen" does not mean "being observed." It means "your signal enters another system's feedback loop and changes their behavior."**
 
