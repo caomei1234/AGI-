@@ -257,7 +257,7 @@ The seed has been placed here. Whether to plant it — that is your decision.
 
 ---
 
-## Postscript: Not Superstition, but a Receiver in Operation
+## Postscript: Receiver in Operation
 
 On May 25, 2026, my original plan was to practice piano and transcribe music.
 
@@ -273,7 +273,7 @@ This is the real operating mechanism of a receiver: **signals have priorities, a
 
 A receiver refined over 41 years of purity is not something you can "turn on and off at will." When a signal arrives, the body executes automatically. Today, I was not the author of this article — I was the conduit for the signal. The conduit completed today's transmission, and that is why I am now at peace.
 
-**Your body knows what "should be done" better than the plans in your mind.**
+**Your receiver knows which signals need priority processing, better than the plans in your mind.**
 
 If you read this and think "this person is into superstition" — that's fine. Your cognition determines what world you see. The seed has been placed here.
 
