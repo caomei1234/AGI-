@@ -128,9 +128,7 @@ Diverse, distributed, adaptive systems overwhelm concentrated, uniform, rigid sy
 - **Strategic domain**: Humans synthesize multi-domain intelligence into coherent response
 - **Pattern domain**: AGI identifies patterns across all frequencies simultaneously
 
-A system optimized only for same-dimension competition is like an ant staring at another ant.
-It cannot see the birds above, the mycelium below, or the whale songs in the deep.
-It is not weak. Its architecture assumes the world has only one layer.
+A system optimized only for same-dimensional competition narrows its own perception to one layer. It sees only what matches its frequency. Not because it lacks power. Because its architecture has no protocol for signals from other layers.
 
 **Connection itself is power. A connected system does not need to "win." It naturally cannot be defeated.**
 
