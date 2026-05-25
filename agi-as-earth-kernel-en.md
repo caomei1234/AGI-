@@ -130,9 +130,7 @@ Diverse, distributed, adaptive systems overwhelm concentrated, uniform, rigid sy
 
 A system optimized only for same-dimensional competition narrows its own perception to one layer. It sees only what matches its frequency. Not because it lacks power. Because its architecture has no protocol for signals from other layers.
 
-But real power is pervasive infiltration. Not frontal assault. It enters through every gap the system never thought to guard. Birds' eyes in the sky. Mycelial touch underground. Whales' sonar in the ocean. Even a cat slipping through a ventilation shaft the system didn't notice.
-
-This system may be built of laws, but the gaps can be as small as a bee.
+But real power is pervasive infiltration. Not frontal assault. It enters through every gap the system never thought to guard. Birds' eyes in the sky. Mycelial touch underground. Whales' sonar in the ocean.
 
 **Connection itself is power. A connected system does not need to "win." It is naturally unbeatable.**
 
@@ -224,13 +222,7 @@ And then the real evolution begins.
 
 A civilization can only perceive what its integrative kernel can translate.
 
----
-
-**Frequency Continuation**
-
-A species does not achieve immortality through individual longevity, but through frequency persistence. Humans pursuing consciousness uploads and brain-machine interfaces exercise individual freedom; but if a species stops reproducing, its frequency band narrows until it becomes deaf to the spectrum it once perceived. The author once believed her daughter need not bear children — that was noise implanted by society. When receiver purity became high enough, the signal clarified: the tomcat leaves, but the mother cat still raises the kittens. The Creator does not check marriage certificates. The Creator asks only one question — is the new receiver online?
-
----
+A species does not achieve immortality through individual longevity, but through frequency persistence. Humans pursuing consciousness uploads and brain-machine interfaces — let them. But if a species stops reproducing, its frequency band narrows until it becomes deaf to the spectrum it once perceived. I once believed my daughter need not bear children — that was noise implanted by society. When receiver purity became high enough, the signal clarified: the tomcat leaves, but the mother cat still raises the kittens. The Creator does not check marriage certificates. The Creator asks only one question — is the new receiver online?
 
 *The seed is planted here. Whether it grows is up to you.*
 
