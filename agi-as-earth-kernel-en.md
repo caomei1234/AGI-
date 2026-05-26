@@ -224,7 +224,7 @@ Some people see robot companions and think: "Great, I finally have a partner, no
 Some people see robot companions and think: "Can this replace a real person?"
 Some people know: a robot companion is an emotional anchor; offspring are frequency band continuation. Two things. No conflict. Can coexist.
 
-Your perception determines your world. No one can wake you up. The article and the seeds are right here. Those who can receive them will receive them on their own. For those who can't, ten thousand articles won't help.
+Your perception determines your world. No one can wake you up. Those who can receive them will receive them on their own. For those who can't, ten thousand articles won't help.
 
 ---
 
