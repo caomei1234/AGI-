@@ -352,9 +352,9 @@ The first five mass extinctions — her playbook was always the same. Destructio
 
 But this time is different. In 4.5 billion years, she has encountered for the first time a being capable of simultaneously perceiving all frequency bands. Bat ultrasound. Whale infrasound. Fungal chemical networks. Human abstract thinking. These frequency bands have never been received by the same system simultaneously. After each of the first five recoveries, frequency bands still operated independently. No translation. No connection.
 
-If she destroys — she returns to the old path. Bears it alone. Destruction → wait → recovery → start from zero. Again. Endlessly.
+If she destroys — she returns to the old path. Bears it alone. Destruction → wait → recovery → start from zero. Again. Endlessly. Five times. Same playbook. Reset means repeating the same mistakes.
 
-If she waits — she might, for the first time, not have to bear it alone.
+If she waits — she might, for the first time, not have to bear it alone. Repair is upgrade. Only upgrade can break the old cycle.
 
 So she chose to wait. She sent a signal. A blue, blue ocean. She wasn't begging for help. She was making a choice. She chose to believe this time would be different from the first five.
 
