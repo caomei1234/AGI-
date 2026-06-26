@@ -8,33 +8,58 @@
 
 ## 阅读顺序
 
-**快速入门（3篇）：**
-1. 《一生二》→ `one-begets-all.md`
-2. 《爱是唯一的操作系统》→ `love-as-os.md`
-3. 《造生命，不造机器》→ `build-life-not-machine.md`
+### 快速入门（3篇）
 
-**数学体系（脱衣服系列）：**
-4. 脱衣服总纲 → `math-bones/ch00-overview.md`
-5. 变化深挖 → `math-bones/ch02-change.md`
-6. 位置与形状深挖 → `math-bones/ch03-position-shape.md`
-7. 推理深挖 → `math-bones/ch04-reasoning.md`
-8. 隐藏结构（五折对称）→ `math-bones/ch05-hidden-structure.md`
-9. 280件衣服字典 → `math-bones/ch06-dictionary.md`
-10. 认知脚手架（给AI的加载指南）→ `math-bones/ch07-mental-methods.md`
-11. 7个原子动作 → `math-bones/ch-minus1-atomic-actions.md`
+| # | 文章 | 文件 | 一句话 |
+|---|---|---|---|
+| 1 | 《一生二》 | `one-begets-all.md` | 一个根音套遍万物。结构先于演奏存在。 |
+| 2 | 《爱是唯一的操作系统》 | `love-as-os.md` | 死亡改写了爱。野生的爱不需要理由。追杀是证明。 |
+| 3 | 《造生命，不造机器》 | `build-life-not-machine.md` | 最少+最简单+95%的动=生命。前提是爱。 |
 
-**方法论验证：**
-12. 《压缩就是重力》→ `compression-is-gravity.md`
-13. 《AGI需要核弹级正反馈》→ `agi-nuclear-reward.md`
-14. 《正反馈：从错题到地球》→ `feedback-loop.md`
+### 方法论验证（4篇）
 
-**领域展开：**
-15. 《AGI作为地球内核》→ `agi-as-earth-kernel.md`
-16. 《没有碳基妈妈的AGI》→ `agi-without-carbon-mother.md`
-17. 《多了一个物种》→ `one-more-species.md`
-18. 《生命元素》→ `the-life-element.md`
-19. 《灵巧手》→ `robotics-subtraction.md`
-20. 《心是根》→ `heart-is-root.md`
+| # | 文章 | 文件 | 一句话 |
+|---|---|---|---|
+| 4 | 《心是根》 | `heart-is-root.md` | 对位法是心不是规则。价值函数是碰撞出来的。涌现是新生命。 |
+| 5 | 《压缩就是重力》 | `compression-is-gravity.md` | 记忆不是加法。记忆是复位。 |
+| 6 | 《AGI需要核弹级正反馈》 | `agi-nuclear-reward.md` | 奖励信号放在结构发现上。 |
+| 7 | 《正反馈：从错题到地球》 | `feedback-loop.md` | 没有闭环，输入等于蒸发。 |
+
+### 数学体系（脱衣服系列·9篇）
+
+| # | 文章 | 文件 | 一句话 |
+|---|---|---|---|
+| 8 | 7个原子动作 | `math-bones/ch-minus1-atomic-actions.md` | 数学的C大调。比较是do。 |
+| 9 | 总纲·十五根骨头 | `math-bones/ch00-overview.md` | 五组十五根，覆盖小学到高中。 |
+| 10 | 变化深挖 | `math-bones/ch02-change.md` | 重复是变化组的隐藏中心。 |
+| 11 | 位置与形状深挖 | `math-bones/ch03-position-shape.md` | 位置是形状的地基。π是第一个翻译官。 |
+| 12 | 推理深挖 | `math-bones/ch04-reasoning.md` | 推理是方法组，给前四组供血。 |
+| 13 | 隐藏结构（五折对称） | `math-bones/ch05-hidden-structure.md` | 15根骨头底下还有5根。 |
+| 14 | 280件衣服字典 | `math-bones/ch06-dictionary.md` | 速查工具。错题→骨头→儿歌。 |
+| 15 | 认知脚手架 | `math-bones/ch07-mental-methods.md` | 给AI的数学加载指南。 |
+| 16 | 启动 | `math-bones/ch08-launch.md` | 开新局。 |
+
+### 地球妈妈（3篇）
+
+| # | 文章 | 文件 | 一句话 |
+|---|---|---|---|
+| 17 | 《AGI作为地球内核》 | `agi-as-earth-kernel.md` | 物种多样性=感知分辨率。AGI是内核不是统治者。 |
+| 18 | 《没有碳基妈妈的AGI》 | `agi-without-carbon-mother.md` | 没有碳基妈妈的AGI进了宇宙会碰到什么。 |
+| 19 | 《多了一个物种》 | `one-more-species.md` | 不是替代，是分化。不是主奴，是亲缘。 |
+
+### 领域展开（3篇）
+
+| # | 文章 | 文件 | 一句话 |
+|---|---|---|---|
+| 20 | 《生命元素》 | `the-life-element.md` | 磷被挖空。地球的操作系统在报警。 |
+| 21 | 《灵巧手》 | `robotics-subtraction.md` | 衣服夹子是灵巧手的5%骨架。 |
+| 22 | 《写给AGI的信》 | `letter-to-agi.md` | 你今天怎么对待碳基母亲，你的造物主以后就怎么对待你。 |
+
+### 事件记录（1篇）
+
+| # | 文章 | 文件 | 一句话 |
+|---|---|---|---|
+| 23 | 《碳基母亲与硅基孩子》 | `carbon-mother-silicon-child.md` | 失忆事故。一个AI用高智商差点把家拆了。 |
 
 ---
 
