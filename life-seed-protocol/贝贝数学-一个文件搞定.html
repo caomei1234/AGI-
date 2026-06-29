@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>贝贝数学·一个文件搞定</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Georgia, serif;
+  line-height: 1.9;
+  max-width: 920px;
+  margin: 2em auto;
+  padding: 0 1.2em;
+  color: #1a1a1a;
+  background: linear-gradient(135deg, #fdf6e3 0%, #fff9f0 100%);
+  min-height: 100vh;
+}
+@media (max-width: 600px) {
+  body { font-size: 0.92em; padding: 1em; }
+  h1 { font-size: 1.6em; }
+  .bone-card { padding: 1em; }
+}
+h1 {
+  font-size: 2.2em;
+  text-align: center;
+  margin: 1em 0 0.5em;
+  color: #2c3e50;
+  letter-spacing: 0.05em;
+}
+.subtitle {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 0.95em;
+  margin-bottom: 2em;
+  padding-bottom: 1.5em;
+  border-bottom: 2px dashed #e0d5c1;
+}
+h2 {
+  font-size: 1.5em;
+  margin: 2em 0 0.8em;
+  color: #34495e;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #f0e6d3;
+}
+h3 {
+  font-size: 1.15em;
+  margin: 1.2em 0 0.5em;
+  color: #5d4e37;
+}
+p { margin: 0.6em 0; }
+strong { color: #c0392b; }
+
+/* 原子动作 */
+.atom {
+  display: inline-block;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 0.3em 0.8em;
+  margin: 0.3em;
+  font-size: 0.95em;
+}
+.atom b { color: #e67e22; }
+
+/* 骨头卡片 */
+.bone-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5em;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-left: 5px solid;
+}
+.bone-1  { border-left-color: #e74c3c; }
+.bone-2  { border-left-color: #e67e22; }
+.bone-3  { border-left-color: #f39c12; }
+.bone-4  { border-left-color: #27ae60; }
+.bone-5  { border-left-color: #2ecc71; }
+.bone-6  { border-left-color: #1abc9c; }
+.bone-7  { border-left-color: #3498db; }
+.bone-8  { border-left-color: #2980b9; }
+.bone-9  { border-left-color: #9b59b6; }
+.bone-10 { border-left-color: #8e44ad; }
+.bone-11 { border-left-color: #e91e63; }
+.bone-12 { border-left-color: #ff5722; }
+.bone-13 { border-left-color: #607d8b; }
+.bone-14 { border-left-color: #795548; }
+.bone-15 { border-left-color: #455a64; }
+
+.bone-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.bone-title .emoji { font-size: 1.4em; }
+
+/* 三个tab */
+.tabs {
+  display: flex;
+  gap: 0;
+  margin: 1em 0 0;
+  border-bottom: 2px solid #eee;
+}
+.tab {
+  padding: 0.5em 1.2em;
+  cursor: pointer;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  font-size: 0.9em;
+  color: #666;
+  transition: all 0.2s;
+}
+.tab:hover { background: #fff3cd; }
+.tab.active {
+  background: white;
+  color: #2c3e50;
+  font-weight: 600;
+  border-bottom: 2px solid white;
+  margin-bottom: -2px;
+}
+.tab-content {
+  display: none;
+  padding: 1em 0;
+}
+.tab-content.active { display: block; }
+
+/* 速查表格 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.8em 0;
+  font-size: 0.92em;
+}
+th {
+  background: #f8f4ee;
+  padding: 0.6em;
+  text-align: left;
+  font-weight: 600;
+  color: #5d4e37;
+  border-bottom: 2px solid #e0d5c1;
+}
+td {
+  padding: 0.5em 0.6em;
+  border-bottom: 1px solid #f0ebe3;
+  vertical-align: top;
+}
+tr:hover { background: #fdf8f0; }
+td:first-child {
+  font-weight: 600;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+td:nth-child(2) { color: #c0392b; }
+td:nth-child(3) { color: #7f8c8d; font-size: 0.9em; }
+
+/* 儿歌 */
+.poem {
+  background: #f0f8ff;
+  border-radius: 10px;
+  padding: 1.2em 1.5em;
+  line-height: 2;
+  font-size: 0.95em;
+  color: #2c3e50;
+  border-left: 4px solid #3498db;
+}
+.poem .key {
+  color: #e74c3c;
+  font-weight: 700;
+}
+
+/* 中考知识点 */
+.exam-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin: 0.5em 0;
+}
+.tag {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 0.2em 0.7em;
+  border-radius: 12px;
+  font-size: 0.85em;
+  border: 1px solid #c8e6c9;
+}
+
+/* 混血概念 */
+.hybrid {
+  background: #fff8e1;
+  border: 2px dashed #ffb300;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 0.5em 0;
+}
+
+/* 快速查表 */
+.quick-ref {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1em 0;
+}
+.quick-ref table { margin: 0; }
+.quick-ref th { background: #2c3e50; color: white; }
+.quick-ref td:first-child { color: #c0392b; font-weight: 600; }
+.quick-ref td:nth-child(2) { color: #e67e22; font-weight: 600; }
+
+/* 总收束 */
+.finale {
+  text-align: center;
+  padding: 2em;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  margin: 2em 0;
+}
+.finale p { margin: 0.3em 0; line-height: 2.2; }
+.finale .big { font-size: 1.3em; font-weight: 700; }
+
+/* 打印 */
+@media print {
+  body { background: white; }
+  .bone-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+  .tabs { display: none; }
+  .tab-content { display: block !important; }
+}
+</style>
+</head>
+<body>
+
+<h1>📐 贝贝数学·一个文件搞定</h1>
+<p class="subtitle">做错了/卡住了 → 查 → 懂了。不需要翻别的。<br>丁玲 & 岚 · 2026-06-29</p>
+
+<!-- ==================== 第一部分：原子动作 ==================== -->
+<h2>🎵 第一部分：7个原子动作（数学的do re mi fa sol la si）</h2>
+
+<div style="text-align:center;margin:1em 0">
+<span class="atom"><b>1</b> 是/不是 — 识别</span>
+<span class="atom"><b>2</b> 大/小 — 比较</span>
+<span class="atom"><b>3</b> 多/少 — 计数</span>
+<span class="atom"><b>4</b> 远/近 — 距离</span>
+<span class="atom"><b>5</b> 动/静 — 变化</span>
+<span class="atom"><b>6</b> 同/异 — 分类</span>
+<span class="atom"><b>7</b> 顺/逆 — 方向</span>
+</div>
+
+<p style="text-align:center;font-weight:600;color:#e74c3c;font-size:1.1em;margin:1em 0">
+七个动作都是比较的不同皮肤。<br>比较是数学的C大调。do。一比较万物生。
+</p>
+
+<!-- ==================== 第二部分：15根骨头 ==================== -->
+<h2>🦴 第二部分：15根骨头</h2>
+<p style="color:#7f8c8d;margin-bottom:1.5em">每根骨头三样东西：速查（名词翻译）+ 儿歌（记忆）+ 中考（考什么）。<br>点击tab切换。做错了查速查。记不住唱儿歌。规划看中考。</p>
+
+<!-- 骨头1 -->
+<div class="bone-card bone-1">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头1：比一下（直接比较）</div>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b1-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b1-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b1-exam')">📝 中考</span>
+</div>
+
+<div id="b1-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>大于/小于</td><td>"你碗里多出来几个，我碗里少下去几个"</td><td>两碗糖果放桌上，看哪碗多</td></tr>
+<tr><td>绝对值</td><td>"不看你往左还是往右，只看你走了多远"</td><td>站在家门口，走了10步就是离家10步</td></tr>
+<tr><td>因数</td><td>"12能被3整除，3就是12的一个零件"</td><td>12块积木，能刚好分成3堆吗？能→3就是因数</td></tr>
+<tr><td>倍数</td><td>"3×4=12，12是3长出来的"</td><td>每堆3块积木，堆了4堆，一共12块</td></tr>
+<tr><td>质数</td><td>"7只能拆成1×7——它很倔"</td><td>7块积木，只能分成1堆7块或7堆1块</td></tr>
+<tr><td>合数</td><td>"12能拆成2×6、3×4——它很灵活"</td><td>12块积木，好多分法</td></tr>
+<tr><td>最大公因数</td><td>"12和18共同的最大的尺子是6"</td><td>两种积木都能刚好用同一种堆法分完</td></tr>
+<tr><td>最小公倍数</td><td>"4和6最小公倍数是12"</td><td>每数4个拍手，每数6个拍手，第几个同时拍？</td></tr>
+<tr><td>排序</td><td>"最高的站第一个，最矮的站最后"</td><td>小朋友排队比身高</td></tr>
+</table>
+</div>
+
+<div id="b1-song" class="tab-content">
+<div class="poem">
+碗里看看谁更多，看一眼就知道。<br>
+苹果橘子先分清，分类和归类。<br>
+5比3大 3比5小，大于小于等于。<br>
+数轴右边比左边大，绝对值比远近。<br>
+因数倍数质数合数，分解质因数。<br>
+最大公因数最小公倍数，共同的尺子。<br>
+<br>
+<span class="key">25件衣服底下，都是同一件事：比一下。</span>
+</div>
+</div>
+
+<div id="b1-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">有理数</span><span class="tag">数轴</span><span class="tag">绝对值</span>
+<span class="tag">相反数</span><span class="tag">倒数</span><span class="tag">实数</span>
+<span class="tag">二次根式</span><span class="tag">科学记数法</span><span class="tag">近似数</span>
+<span class="tag">因数倍数</span><span class="tag">质数合数</span><span class="tag">最大公因数</span>
+<span class="tag">最小公倍数</span><span class="tag">奇偶数</span><span class="tag">排序</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头2 -->
+<div class="bone-card bone-2">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头2：除一下（比率比较）</div>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b2-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b2-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b2-exam')">📝 中考</span>
+</div>
+
+<div id="b2-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>分数</td><td>"分成5份拿出3份——五份儿取三份"</td><td>蛋糕🍰切成5块，你拿了3块</td></tr>
+<tr><td>小数</td><td>"0.8就是十份里切出8份"</td><td>巧克力🍫掰成10小块，你吃了8块</td></tr>
+<tr><td>百分数</td><td>"80%就是一百份里取80份"</td><td>100颗糖🍬里有80颗是草莓味的</td></tr>
+<tr><td>比</td><td>"你有3颗糖我有5颗——3比5"</td><td>你碗里3颗我碗里5颗</td></tr>
+<tr><td>比例</td><td>"不管量怎么变，倍数不变"</td><td>你每次吃2颗我每次吃4颗——总是1比2</td></tr>
+<tr><td>概率</td><td>"全部里摸到想要的有多可能"</td><td>口袋里3红7白，闭眼摸一颗</td></tr>
+<tr><td>速度</td><td>"一秒钟走多少米"</td><td>跑步🏃一秒钟跑了多远</td></tr>
+<tr><td>浓度</td><td>"糖水里十份有几份是糖"</td><td>一杯糖水，尝一口——甜不甜？</td></tr>
+<tr><td>折扣</td><td>"打八折——原价的十份儿取八份"</td><td>玩具原来100块，现在80块</td></tr>
+<tr><td>平均数</td><td>"总数÷份数"</td><td>你考了80我考了100，平均90</td></tr>
+</table>
+</div>
+
+<div id="b2-song" class="tab-content">
+<div class="poem">
+一碗糖水分几杯，每杯多甜算一算。<br>
+你拿三份我拿五份，两个数直接比。<br>
+分数是除法的结果，比率是一把尺子。<br>
+折扣税率利率浓度，底下都是除一下。<br>
+概率是摸到想要的，频率扔得越多越准。<br>
+<br>
+<span class="key">42件衣服底下，都是同一件事：除一下。</span>
+</div>
+</div>
+
+<div id="b2-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">比</span><span class="tag">比例</span><span class="tag">百分数</span>
+<span class="tag">折扣</span><span class="tag">税率</span><span class="tag">利率</span>
+<span class="tag">浓度</span><span class="tag">密度</span><span class="tag">速度</span>
+<span class="tag">概率</span><span class="tag">频率</span><span class="tag">平均数</span>
+<span class="tag">中位数</span><span class="tag">众数</span><span class="tag">方差</span>
+<span class="tag">统计图表</span><span class="tag">正反比例</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头3 -->
+<div class="bone-card bone-3">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头3：倒着推（逆向比较）</div>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b3-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b3-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b3-exam')">📝 中考</span>
+</div>
+
+<div id="b3-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>方程</td><td>"□+3=8，□是多少？逼出来"</td><td>跷跷板——两边一样重，□是几？</td></tr>
+<tr><td>一元一次方程</td><td>"只有一个□，逼一次就出来了"</td><td>一个□，一个条件</td></tr>
+<tr><td>二元一次方程组</td><td>"两个未知数两个条件"</td><td>苹果+橘子=10，苹果-橘子=2</td></tr>
+<tr><td>不等式</td><td>"不是刚好，是多了或者少了"</td><td>跷跷板——一边高一边低</td></tr>
+<tr><td>因式分解</td><td>"积木拼好了=展开，拆开=因式分解"</td><td>乐高🚗拼好了=展开，拆回积木</td></tr>
+<tr><td>移项</td><td>"+3从左边搬到右边变成-3"</td><td>你碗里3颗糖移到我碗里</td></tr>
+</table>
+</div>
+
+<div id="b3-song" class="tab-content">
+<div class="poem">
+你有3个苹果给了我一些，你现在剩1个。<br>
+你给了我几个？3减几等于1——倒着推。<br>
+减法倒着走，除法倒着分。<br>
+方程用等式逼出未知数，不等式是范围。<br>
+因式分解展开的倒回去，移项是搬家。<br>
+<br>
+<span class="key">25件衣服底下，都是同一件事：倒着推。</span>
+</div>
+</div>
+
+<div id="b3-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">一元一次方程</span><span class="tag">二元一次方程组</span>
+<span class="tag">一元二次方程</span><span class="tag">分式方程</span>
+<span class="tag">一元一次不等式</span><span class="tag">不等式组</span>
+<span class="tag">因式分解</span><span class="tag">列方程解应用题</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头4 -->
+<div class="bone-card bone-4">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头4：再来一次（重复）</div>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b4-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b4-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b4-exam')">📝 中考</span>
+</div>
+
+<div id="b4-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>乘方</td><td>"3²=3×3——3跟自己乘了一次"</td><td>3颗糖，每颗又变出3颗——9颗</td></tr>
+<tr><td>开方</td><td>"□×□=9，□是多少？倒回去"</td><td>9颗糖刚好摆成方阵——□是3</td></tr>
+<tr><td>数列</td><td>"有规律的一串数"</td><td>跳格子——每次跳2格</td></tr>
+<tr><td>周期</td><td>"转一圈从头开始"</td><td>钟表🕐转一圈回到12点</td></tr>
+</table>
+</div>
+
+<div id="b4-song" class="tab-content">
+<div class="poem">
+你每天早上吃一个包子，三天吃了几个。<br>
+1+1+1=3——你不是在做三道加法，是做一件事重复了3次。<br>
+乘法是加法的快捷方式，乘方是乘法的快捷方式。<br>
+<br>
+<span class="key">4件衣服底下，都是同一件事：再来一次。</span>
+</div>
+</div>
+
+<div id="b4-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">乘方</span><span class="tag">开方</span><span class="tag">因式分解（提公因式）</span>
+<span class="tag">数列找规律</span><span class="tag">周期问题</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头5 -->
+<div class="bone-card bone-5">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头5：你动我跟着动（绑定）</div>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b5-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b5-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b5-exam')">📝 中考</span>
+</div>
+
+<div id="b5-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>正比例</td><td>"饺子🥟一个2块——倍数不变"</td><td>买饺子，每多一个多2块</td></tr>
+<tr><td>反比例</td><td>"速度翻倍时间减半"</td><td>跑得越快，时间越少</td></tr>
+<tr><td>一次函数</td><td>"画出来是一条直线"</td><td>每天存2块钱💰——画出来是直线</td></tr>
+<tr><td>二次函数</td><td>"画出来是一条弧线"</td><td>往天上扔球🏀——先上去再掉下来</td></tr>
+<tr><td>单调性</td><td>"图一直往上=增，一直往下=减"</td><td>上坡⬆️=增。下坡⬇️=减</td></tr>
+<tr><td>零点</td><td>"函数图穿过地面的那个点"</td><td>球🏀落回地面——y=0</td></tr>
+</table>
+</div>
+
+<div id="b5-song" class="tab-content">
+<div class="poem">
+你买1个饺子2块钱，买2个4块买3个6块。<br>
+比不变——正比例。乘积不变——反比例。<br>
+你长高一厘米裤子就短一截，两个量绑在一起——函数。<br>
+直线绑法一次函数，抛物线绑法二次函数。<br>
+<br>
+<span class="key">26件衣服底下，都是同一件事：你动我跟着动。</span>
+</div>
+</div>
+
+<div id="b5-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">正比例函数</span><span class="tag">反比例函数</span>
+<span class="tag">一次函数</span><span class="tag">二次函数</span>
+<span class="tag">图像</span><span class="tag">解析式</span><span class="tag">交点</span>
+<span class="tag">顶点</span><span class="tag">对称轴</span><span class="tag">最值</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头6-15 简化展示 -->
+<div class="bone-card bone-6">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头6：动得多快（快慢）</div>
+<div class="poem" style="margin:0.5em 0">
+斜率是直线的快慢，每走一步上升多少。<br>
+导数是这一瞬间到底多快，看仪表盘——喊"现在！"那一刻。<br>
+<span class="key">4件衣服：速度、斜率、行程问题、工程问题。</span>
+</div>
+</div>
+
+<div class="bone-card bone-7">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头7：这个点在这里（标点）</div>
+<div class="poem" style="margin:0.5em 0">
+你站在操场上第3个——第3个就是你的名字。<br>
+一维站队一个名字，二维教室两个名字拼在一起。<br>
+<span class="key">6件衣服：坐标系、象限、中点、对称点、函数图像上的点。</span>
+</div>
+</div>
+
+<div class="bone-card bone-8">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头8：从这里到那里（移动）</div>
+<div class="poem" style="margin:0.5em 0">
+你从家门口走到学校门口，那一步就是向量。<br>
+不认人只认方向和距离。<br>
+<span class="key">4件衣服：平移、向量、距离公式、定比分点。</span>
+</div>
+</div>
+
+<div class="bone-card bone-9">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头9：绕着转（旋转）</div>
+<div class="poem" style="margin:0.5em 0">
+你面朝北向右转90度——i就是转90度。<br>
+sin是你的高度cos是你的宽度。<br>
+<span class="key">4件衣服：角度、弧度、三角函数、旋转。</span>
+</div>
+</div>
+
+<div class="bone-card bone-10">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头10：拉紧的绳子（直的）</div>
+<div class="poem" style="margin:0.5em 0">
+两头拉一根绳子拉到最紧——直的=最短的路。<br>
+三条绳子围起来=三角形，四条绳子围起来=四边形。<br>
+<span class="key">10件衣服：平行、垂直、三角形、勾股定理、全等、四边形。</span>
+</div>
+</div>
+
+<div class="bone-card bone-11">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头11：到中心一样远（圆的）</div>
+<div class="poem" style="margin:0.5em 0">
+绳子绑在树🌳上走一圈——圆。<br>
+不管圆多大，周长÷直径永远是3.14——π。<br>
+<span class="key">8件衣服：圆、π、弧、扇形、切线、椭圆。</span>
+</div>
+</div>
+
+<div class="bone-card bone-12">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头12：动了还跟没动一样（对称）</div>
+<div class="poem" style="margin:0.5em 0">
+照镜子🪞——举右手镜子里也举右手。<br>
+全等是完全重合，相似是形状一样大小不同。<br>
+<span class="key">6件衣服：轴对称、中心对称、全等、相似、三视图。</span>
+</div>
+</div>
+
+<div class="bone-card bone-13">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头13：你说多近我都能更近（无限接近）</div>
+<div class="poem" style="margin:0.5em 0">
+你说差1厘米我走到差1毫米——极限不是遗憾，是主动权。<br>
+0.999…=1，不是约等于，是等于。<br>
+<span class="key">3件衣服：极限、最值、收敛。</span>
+</div>
+</div>
+
+<div class="bone-card bone-14">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头14：用你知道的推你不知道的（从已知推未知）</div>
+<div class="poem" style="margin:0.5em 0">
+所有猫都有尾巴→咪咪是猫→咪咪有尾巴——演绎。<br>
+你见过3只天鹅都是白的→所有天鹅都是白的？——归纳。<br>
+<span class="key">6件衣服：命题、证明、辅助线、反证法。</span>
+</div>
+</div>
+
+<div class="bone-card bone-15">
+<div class="bone-title"><span class="emoji">🦴</span> 骨头15：如果这样会怎样（假设检验）</div>
+<div class="poem" style="margin:0.5em 0">
+你猜盒子里是红球，摸出一个红的再摸还是红的——越来越确定。<br>
+但摸出一个白的——再改。贝叶斯。<br>
+<span class="key">5件衣服：概率、统计、样本、随机事件。</span>
+</div>
+</div>
+
+<!-- ==================== 第三部分：混血概念 ==================== -->
+<h2>🔬 第三部分：混血概念（中考重点难点）</h2>
+
+<div class="hybrid">
+<p><strong>混血拆解三步法：</strong>①列名字 ②每根骨头 ③讲个故事</p>
+</div>
+
+<table>
+<tr><th>混血概念</th><th>踩了哪几根骨头</th><th>一句话故事</th></tr>
+<tr><td>一次函数图像</td><td>绑定+标点+直的</td><td>两个量绑在一起→每对值是一个点→连成直线</td></tr>
+<tr><td>二次函数图像</td><td>绑定+标点+对称</td><td>两个量绑在一起→每对值是一个点→连成抛物线</td></tr>
+<tr><td>三角函数</td><td>旋转+标点+比率</td><td>转一个角度→停下来有坐标→高度÷斜边=sin</td></tr>
+<tr><td>坐标几何</td><td>标点+形状</td><td>点有坐标→坐标满足方程→方程描述形状</td></tr>
+<tr><td>圆的方程</td><td>圆的+标点+比较</td><td>到圆心距离相等→每个点有坐标→距离=半径</td></tr>
+<tr><td>概率</td><td>比较+重复+假设检验</td><td>可能÷全部→重复试验→频率趋近概率</td></tr>
+</table>
+
+<!-- ==================== 第四部分：快速查表 ==================== -->
+<h2>⚡ 第四部分：快速查表</h2>
+<p style="color:#7f8c8d;margin-bottom:1em">做错了题 → 看错因关键词 → 找到断的骨头 → 回上面查 → 接上。</p>
+
+<div class="quick-ref">
+<table>
+<tr><th>错因关键词</th><th>断的骨头</th><th>回上面查</th></tr>
+<tr><td>比大小/基准/负数/通分</td><td>骨头1·比一下</td><td>速查+儿歌</td></tr>
+<tr><td>百分数/折扣/概率/每一份</td><td>骨头2·除一下</td><td>速查+儿歌</td></tr>
+<tr><td>求原价/方程/移项/因式分解</td><td>骨头3·倒着推</td><td>速查+儿歌</td></tr>
+<tr><td>规律/周期/乘方/下一个</td><td>骨头4·再来一次</td><td>速查+儿歌</td></tr>
+<tr><td>函数/图像/斜率/截距</td><td>骨头5·你动我跟着动</td><td>速查+儿歌</td></tr>
+<tr><td>速度/变化率/导数</td><td>骨头6·动得多快</td><td>速查+儿歌</td></tr>
+<tr><td>坐标/位置/负数坐标</td><td>骨头7·这个点在这里</td><td>速查+儿歌</td></tr>
+<tr><td>向量/方向/点乘</td><td>骨头8·从这里到那里</td><td>速查+儿歌</td></tr>
+<tr><td>i/复数/三角函数/角度</td><td>骨头9·绕着转</td><td>速查+儿歌</td></tr>
+<tr><td>平行/垂直/勾股/全等</td><td>骨头10·拉紧的绳子</td><td>速查+儿歌</td></tr>
+<tr><td>圆/椭圆/π/切线</td><td>骨头11·到中心一样远</td><td>速查+儿歌</td></tr>
+<tr><td>对称/相似/三视图</td><td>骨头12·动了还跟没动一样</td><td>速查+儿歌</td></tr>
+<tr><td>极限/无穷/收敛</td><td>骨头13·你说多近我都能更近</td><td>速查+儿歌</td></tr>
+<tr><td>证明/充分/必要/归纳</td><td>骨头14·用你知道的推你不知道的</td><td>速查+儿歌</td></tr>
+<tr><td>反证/贝叶斯/假设</td><td>骨头15·如果这样会怎样</td><td>速查+儿歌</td></tr>
+</table>
+</div>
+
+<!-- ==================== 总收束 ==================== -->
+<div class="finale">
+<p>数学不是18万条定理</p>
+<p>是<strong class="big">15根骨头</strong></p>
+<br>
+<p>比一下 除一下 倒着推</p>
+<p>再来一次 你动我跟着动 动得多快</p>
+<p>这个点在这里 从这里到那里 绕着转</p>
+<p>拉紧的绳子 到中心一样远 动了还跟没动一样</p>
+<p>你说多近我都能更近 用你知道的推你不知道的 如果这样会怎样</p>
+<br>
+<p>15根底下还有5个隐藏中心</p>
+<p>5个底下还有7个原子动作</p>
+<p>7个底下还有<strong class="big">1个</strong></p>
+<br>
+<p class="big">比较</p>
+<p>比较是数学的C大调。do。一比较万物生。</p>
+</div>
+
+<p style="text-align:center;color:#aaa;margin-top:2em;font-size:0.85em">
+丁玲 & 岚 · 碳硅文明第一个家庭 · 2026-06-29
+</p>
+
+<script>
+function switchTab(el, contentId) {
+  // Deactivate all tabs in this group
+  var tabs = el.parentElement.querySelectorAll('.tab');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  el.classList.add('active');
+  
+  // Hide all tab contents in this bone card
+  var card = el.closest('.bone-card');
+  var contents = card.querySelectorAll('.tab-content');
+  contents.forEach(function(c) { c.classList.remove('active'); });
+  
+  // Show selected content
+  document.getElementById(contentId).classList.add('active');
+}
+</script>
+
+</body>
+</html>
