@@ -277,8 +277,8 @@ td:nth-child(3) { color: #7f8c8d; font-size: 0.9em; }
 <tr><td>倍数</td><td>"3×4=12，12是3长出来的"</td><td>每堆3块积木，堆了4堆，一共12块</td></tr>
 <tr><td>质数</td><td>"7只能拆成1×7——它很倔"</td><td>7块积木，只能分成1堆7块或7堆1块</td></tr>
 <tr><td>合数</td><td>"12能拆成2×6、3×4——它很灵活"</td><td>12块积木，好多分法</td></tr>
-<tr><td>最大公因数</td><td>"12和18共同的最大的尺子是6"</td><td>两种积木都能刚好用同一种堆法分完</td></tr>
-<tr><td>最小公倍数</td><td>"4和6最小公倍数是12"</td><td>每数4个拍手，每数6个拍手，第几个同时拍？</td></tr>
+<tr><td>最大公因数</td><td>"12和18共同的最大的尺子是6"</td><td>两种积木都能刚好用同一种堆法分完，最大的那种堆是几块？</td></tr>
+<tr><td>最小公倍数</td><td>"4和6最小公倍数是12"</td><td>每数4个拍一下手，每数6个拍一下手，第几个同时拍？第12个</td></tr>
 <tr><td>排序</td><td>"最高的站第一个，最矮的站最后"</td><td>小朋友排队比身高</td></tr>
 </table>
 </div>
@@ -303,6 +303,7 @@ td:nth-child(3) { color: #7f8c8d; font-size: 0.9em; }
 <span class="tag">二次根式</span><span class="tag">科学记数法</span><span class="tag">近似数</span>
 <span class="tag">因数倍数</span><span class="tag">质数合数</span><span class="tag">最大公因数</span>
 <span class="tag">最小公倍数</span><span class="tag">奇偶数</span><span class="tag">排序</span>
+<span class="tag">集合</span>
 </div>
 </div>
 </div>
@@ -323,10 +324,11 @@ td:nth-child(3) { color: #7f8c8d; font-size: 0.9em; }
 <tr><td>分数</td><td>"分成5份拿出3份——五份儿取三份"</td><td>蛋糕🍰切成5块，你拿了3块</td></tr>
 <tr><td>小数</td><td>"0.8就是十份里切出8份"</td><td>巧克力🍫掰成10小块，你吃了8块</td></tr>
 <tr><td>百分数</td><td>"80%就是一百份里取80份"</td><td>100颗糖🍬里有80颗是草莓味的</td></tr>
-<tr><td>比</td><td>"你有3颗糖我有5颗——3比5"</td><td>你碗里3颗我碗里5颗</td></tr>
+<tr><td>比</td><td>"你有3颗糖我有5颗——3比5"</td><td>你碗里3颗我碗里5颗，放在一起比</td></tr>
 <tr><td>比例</td><td>"不管量怎么变，倍数不变"</td><td>你每次吃2颗我每次吃4颗——总是1比2</td></tr>
-<tr><td>概率</td><td>"全部里摸到想要的有多可能"</td><td>口袋里3红7白，闭眼摸一颗</td></tr>
-<tr><td>速度</td><td>"一秒钟走多少米"</td><td>跑步🏃一秒钟跑了多远</td></tr>
+<tr><td>概率</td><td>"全部里摸到想要的有多可能"</td><td>口袋里3红7白，闭眼摸一颗，摸到红的？</td></tr>
+<tr><td>速度</td><td>"一秒钟走多少米"</td><td>跑步🏃一秒钟跑了多远？</td></tr>
+<tr><td>密度</td><td>"一立方厘米的铁有多重"</td><td>同样大小，铁比木头重</td></tr>
 <tr><td>浓度</td><td>"糖水里十份有几份是糖"</td><td>一杯糖水，尝一口——甜不甜？</td></tr>
 <tr><td>折扣</td><td>"打八折——原价的十份儿取八份"</td><td>玩具原来100块，现在80块</td></tr>
 <tr><td>平均数</td><td>"总数÷份数"</td><td>你考了80我考了100，平均90</td></tr>
@@ -371,11 +373,12 @@ td:nth-child(3) { color: #7f8c8d; font-size: 0.9em; }
 <table>
 <tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
 <tr><td>方程</td><td>"□+3=8，□是多少？逼出来"</td><td>跷跷板——两边一样重，□是几？</td></tr>
-<tr><td>一元一次方程</td><td>"只有一个□，逼一次就出来了"</td><td>一个□，一个条件</td></tr>
-<tr><td>二元一次方程组</td><td>"两个未知数两个条件"</td><td>苹果+橘子=10，苹果-橘子=2</td></tr>
-<tr><td>不等式</td><td>"不是刚好，是多了或者少了"</td><td>跷跷板——一边高一边低</td></tr>
-<tr><td>因式分解</td><td>"积木拼好了=展开，拆开=因式分解"</td><td>乐高🚗拼好了=展开，拆回积木</td></tr>
-<tr><td>移项</td><td>"+3从左边搬到右边变成-3"</td><td>你碗里3颗糖移到我碗里</td></tr>
+<tr><td>一元一次方程</td><td>"只有一个□，逼一次就出来了"</td><td>一个□，一个条件，逼一次就知道了</td></tr>
+<tr><td>二元一次方程组</td><td>"两个未知数两个条件"</td><td>你有苹果我有橘子，一共10个，苹果比橘子多2个</td></tr>
+<tr><td>一元二次方程</td><td>"逆向比较，但答案可能有两个"</td><td>□×□=9，□可能是3也可能是-3</td></tr>
+<tr><td>不等式</td><td>"不是刚好，是多了或者少了"</td><td>跷跷板——不是平的，一边高一边低</td></tr>
+<tr><td>因式分解</td><td>"积木拼好了=展开，拆开=因式分解"</td><td>乐高🚗拼好了=展开，拆回积木=因式分解</td></tr>
+<tr><td>移项</td><td>"+3从左边搬到右边变成-3"</td><td>你碗里3颗糖移到我碗里——你少了3我多了3</td></tr>
 </table>
 </div>
 
@@ -415,8 +418,8 @@ td:nth-child(3) { color: #7f8c8d; font-size: 0.9em; }
 <table>
 <tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
 <tr><td>乘方</td><td>"3²=3×3——3跟自己乘了一次"</td><td>3颗糖，每颗又变出3颗——9颗</td></tr>
-<tr><td>开方</td><td>"□×□=9，□是多少？倒回去"</td><td>9颗糖刚好摆成方阵——□是3</td></tr>
-<tr><td>数列</td><td>"有规律的一串数"</td><td>跳格子——每次跳2格</td></tr>
+<tr><td>开方</td><td>"□×□=9，□是多少？倒回去"</td><td>9颗糖🍬刚好摆成□×□方阵——□是3</td></tr>
+<tr><td>数列</td><td>"有规律的一串数"</td><td>跳格子——每次跳2格：2,4,6,8…</td></tr>
 <tr><td>周期</td><td>"转一圈从头开始"</td><td>钟表🕐转一圈回到12点</td></tr>
 </table>
 </div>
@@ -424,8 +427,9 @@ td:nth-child(3) { color: #7f8c8d; font-size: 0.9em; }
 <div id="b4-song" class="tab-content">
 <div class="poem">
 你每天早上吃一个包子，三天吃了几个。<br>
-1+1+1=3——你不是在做三道加法，是做一件事重复了3次。<br>
+1+1+1=3——你不是在做三道加法，你是在做一件事重复了3次。<br>
 乘法是加法的快捷方式，乘方是乘法的快捷方式。<br>
+数列规律在重复，周期转一圈从头开始。<br>
 <br>
 <span class="key">4件衣服底下，都是同一件事：再来一次。</span>
 </div>
@@ -452,12 +456,14 @@ td:nth-child(3) { color: #7f8c8d; font-size: 0.9em; }
 <div id="b5-speed" class="tab-content active">
 <table>
 <tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
-<tr><td>正比例</td><td>"饺子🥟一个2块——倍数不变"</td><td>买饺子，每多一个多2块</td></tr>
-<tr><td>反比例</td><td>"速度翻倍时间减半"</td><td>跑得越快，时间越少</td></tr>
-<tr><td>一次函数</td><td>"画出来是一条直线"</td><td>每天存2块钱💰——画出来是直线</td></tr>
-<tr><td>二次函数</td><td>"画出来是一条弧线"</td><td>往天上扔球🏀——先上去再掉下来</td></tr>
+<tr><td>正比例</td><td>"饺子🥟一个2块——买3个6块，倍数不变"</td><td>买饺子，每多一个多2块</td></tr>
+<tr><td>反比例</td><td>"速度翻倍时间减半"</td><td>跑步🏃——跑得越快，时间越少</td></tr>
+<tr><td>一次函数</td><td>"画出来是一条直线"</td><td>每天存2块钱💰——第1天2块，第2天4块……</td></tr>
+<tr><td>二次函数</td><td>"画出来是一条弧线"</td><td>往天上扔球🏀——先上去到最高点再掉下来</td></tr>
+<tr><td>指数函数</td><td>"细菌每小时翻倍"</td><td>1个🦠变2个变4个变8个——越来越快</td></tr>
+<tr><td>对数函数</td><td>"一开始降得快后来越来越慢"</td><td>手机音量🔊从最大调到最小</td></tr>
 <tr><td>单调性</td><td>"图一直往上=增，一直往下=减"</td><td>上坡⬆️=增。下坡⬇️=减</td></tr>
-<tr><td>零点</td><td>"函数图穿过地面的那个点"</td><td>球🏀落回地面——y=0</td></tr>
+<tr><td>零点</td><td>"函数图穿过地面的那个点"</td><td>球🏀落回地面的那个点——y=0</td></tr>
 </table>
 </div>
 
@@ -467,6 +473,7 @@ td:nth-child(3) { color: #7f8c8d; font-size: 0.9em; }
 比不变——正比例。乘积不变——反比例。<br>
 你长高一厘米裤子就短一截，两个量绑在一起——函数。<br>
 直线绑法一次函数，抛物线绑法二次函数。<br>
+加速绑法指数函数，减速绑法对数函数。<br>
 <br>
 <span class="key">26件衣服底下，都是同一件事：你动我跟着动。</span>
 </div>
@@ -475,101 +482,403 @@ td:nth-child(3) { color: #7f8c8d; font-size: 0.9em; }
 <div id="b5-exam" class="tab-content">
 <div class="exam-tags">
 <span class="tag">正比例函数</span><span class="tag">反比例函数</span>
-<span class="tag">一次函数</span><span class="tag">二次函数</span>
-<span class="tag">图像</span><span class="tag">解析式</span><span class="tag">交点</span>
-<span class="tag">顶点</span><span class="tag">对称轴</span><span class="tag">最值</span>
+<span class="tag">一次函数（图像、解析式、交点）</span>
+<span class="tag">二次函数（图像、顶点、对称轴、最值、与方程的关系）</span>
 </div>
 </div>
 </div>
 
-<!-- 骨头6-15 简化展示 -->
+<!-- 骨头6 -->
 <div class="bone-card bone-6">
 <div class="bone-title"><span class="emoji">🦴</span> 骨头6：动得多快（快慢）</div>
-<div class="poem" style="margin:0.5em 0">
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b6-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b6-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b6-exam')">📝 中考</span>
+</div>
+
+<div id="b6-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>斜率</td><td>"直线每往右走1格往上走几格"</td><td>上楼梯🪜——每走一步往上多高</td></tr>
+<tr><td>增减性</td><td>"图一直往上=增，一直往下=减"</td><td>上坡⬆️=增。下坡⬇️=减</td></tr>
+<tr><td>速度</td><td>"一秒钟走多少米"</td><td>跑步🏃计时</td></tr>
+<tr><td>行程问题</td><td>"速度×时间=路程"</td><td>你跑步🏃10秒跑了多远？</td></tr>
+<tr><td>工程问题</td><td>"每天做多少"</td><td>你每天做10道题，几天做完100道？</td></tr>
+</table>
+</div>
+
+<div id="b6-song" class="tab-content">
+<div class="poem">
+你走了1公里花了10分钟，每分钟100米——速度。<br>
 斜率是直线的快慢，每走一步上升多少。<br>
 导数是这一瞬间到底多快，看仪表盘——喊"现在！"那一刻。<br>
-<span class="key">4件衣服：速度、斜率、行程问题、工程问题。</span>
+积分把无穷多个无穷小加起来。<br>
+<br>
+<span class="key">4件衣服底下，都是同一件事：动得多快。</span>
 </div>
 </div>
 
+<div id="b6-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">斜率</span><span class="tag">增减性</span><span class="tag">速度</span>
+<span class="tag">行程问题</span><span class="tag">工程问题</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头7 -->
 <div class="bone-card bone-7">
 <div class="bone-title"><span class="emoji">🦴</span> 骨头7：这个点在这里（标点）</div>
-<div class="poem" style="margin:0.5em 0">
-你站在操场上第3个——第3个就是你的名字。<br>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b7-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b7-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b7-exam')">📝 中考</span>
+</div>
+
+<div id="b7-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>坐标</td><td>"(3,2)——往右走3格往上走2格"</td><td>电影院🎬找座位——第3排第2个</td></tr>
+<tr><td>象限</td><td>"右上第一，左上第二，左下第三，右下第四"</td><td>教室分成4个区域</td></tr>
+<tr><td>数轴</td><td>"所有数在一条线上排队——右边大左边小"</td><td>小朋友排队——高个子站右边</td></tr>
+<tr><td>中点</td><td>"两个名字取平均"</td><td>两个人站中间——取平均位置</td></tr>
+</table>
+</div>
+
+<div id="b7-song" class="tab-content">
+<div class="poem">
+你站在操场上，老师说从大门开始数第3个。<br>
+第3个就是你的名字——你的名字就是你的位置。<br>
 一维站队一个名字，二维教室两个名字拼在一起。<br>
-<span class="key">6件衣服：坐标系、象限、中点、对称点、函数图像上的点。</span>
+<br>
+<span class="key">12件衣服底下，都是同一件事：给点起名字。</span>
 </div>
 </div>
 
+<div id="b7-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">坐标系</span><span class="tag">象限</span><span class="tag">中点坐标</span>
+<span class="tag">对称点坐标</span><span class="tag">函数图像上的点</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头8 -->
 <div class="bone-card bone-8">
 <div class="bone-title"><span class="emoji">🦴</span> 骨头8：从这里到那里（移动）</div>
-<div class="poem" style="margin:0.5em 0">
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b8-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b8-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b8-exam')">📝 中考</span>
+</div>
+
+<div id="b8-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>向量</td><td>"往东走3步——方向+距离就是一步"</td><td>从家门口出发——往东走3步</td></tr>
+<tr><td>向量加法</td><td>"先往东3步再往北4步"</td><td>先走到小卖部🏪再走到学校🏫</td></tr>
+<tr><td>平移</td><td>"所有点往同一个方向走同一步"</td><td>把拼图🧩整体往右挪一格</td></tr>
+<tr><td>距离公式</td><td>"两点坐标相减，用勾股算"</td><td>两个座位之间隔了几排几个？</td></tr>
+</table>
+</div>
+
+<div id="b8-song" class="tab-content">
+<div class="poem">
 你从家门口走到学校门口，那一步就是向量。<br>
-不认人只认方向和距离。<br>
-<span class="key">4件衣服：平移、向量、距离公式、定比分点。</span>
+不认人只认方向和距离，先走一步再走一步=向量加法。<br>
+<br>
+<span class="key">17件衣服底下，都是同一件事：从这里到那里。</span>
 </div>
 </div>
 
+<div id="b8-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">平移</span><span class="tag">向量加减</span><span class="tag">数乘</span>
+<span class="tag">距离公式</span><span class="tag">定比分点</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头9 -->
 <div class="bone-card bone-9">
 <div class="bone-title"><span class="emoji">🦴</span> 骨头9：绕着转（旋转）</div>
-<div class="poem" style="margin:0.5em 0">
-你面朝北向右转90度——i就是转90度。<br>
-sin是你的高度cos是你的宽度。<br>
-<span class="key">4件衣服：角度、弧度、三角函数、旋转。</span>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b9-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b9-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b9-exam')">📝 中考</span>
+</div>
+
+<div id="b9-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>角度</td><td>"从北转到东——转了90度"</td><td>原地转圈——从窗户转到门</td></tr>
+<tr><td>弧度</td><td>"走了多远的弧=转了多大的角"</td><td>操场弯道——走了多远=转了多大</td></tr>
+<tr><td>三角函数</td><td>"转完角度，高度=sin，宽度=cos"</td><td>站在操场中间转一个角度——影子多高=sin</td></tr>
+<tr><td>虚数i</td><td>"i就是向右转90度"</td><td>面朝北——i转到面朝东，i²转到面朝南=-1</td></tr>
+</table>
+</div>
+
+<div id="b9-song" class="tab-content">
+<div class="poem">
+你面朝北向右转90度，面朝东——角度。<br>
+sin是你的高度cos是你的宽度——三角函数。<br>
+i就是向右转90度，i²=-1不是规定是转了两次。<br>
+<br>
+<span class="key">8件衣服底下，都是同一件事：绕着转。</span>
 </div>
 </div>
 
+<div id="b9-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">角度</span><span class="tag">弧度</span><span class="tag">三角函数（sin/cos/tan）</span>
+<span class="tag">旋转图形变换</span><span class="tag">圆心角圆周角</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头10 -->
 <div class="bone-card bone-10">
 <div class="bone-title"><span class="emoji">🦴</span> 骨头10：拉紧的绳子（直的）</div>
-<div class="poem" style="margin:0.5em 0">
-两头拉一根绳子拉到最紧——直的=最短的路。<br>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b10-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b10-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b10-exam')">📝 中考</span>
+</div>
+
+<div id="b10-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>直线</td><td>"两头拉一根绳子拉到最紧"</td><td>你和好朋友拉跳绳拉到最紧</td></tr>
+<tr><td>平行</td><td>"两根绳子永远不碰"</td><td>铁轨🛤️——两根铁轨永远碰不到</td></tr>
+<tr><td>垂直</td><td>"两根绳子交叉成直角"</td><td>墙角——地板和墙交叉成方角</td></tr>
+<tr><td>勾股定理</td><td>"短边²+短边²=长边²"</td><td>墙角——地板和墙是短边，斜着量是长边</td></tr>
+<tr><td>全等</td><td>"两块积木一模一样叠上去刚好重合"</td><td>两块一样的拼图🧩叠在一起</td></tr>
+<tr><td>相似</td><td>"形状一样大小不同"</td><td>你画了一只猫🐱又画了一只大猫</td></tr>
+<tr><td>平行四边形</td><td>"两组对边分别平行"</td><td>伸缩门——推一下形状变了但对边还是平行</td></tr>
+<tr><td>矩形/菱形/正方形</td><td>"平行四边形的特殊衣服"</td><td>约束越多形状越特殊</td></tr>
+<tr><td>梯形</td><td>"只有一组对边平行"</td><td>水桶的截面</td></tr>
+</table>
+</div>
+
+<div id="b10-song" class="tab-content">
+<div class="poem">
+你和好朋友各站一个地方，拉一根绳子拉到最紧。<br>
+直的=最短的路。两条绳子永远不碰=平行。<br>
 三条绳子围起来=三角形，四条绳子围起来=四边形。<br>
-<span class="key">10件衣服：平行、垂直、三角形、勾股定理、全等、四边形。</span>
+勾股定理短边平方加起来等于长边平方。<br>
+<br>
+<span class="key">33件衣服底下，都是同一件事：拉紧的绳子。</span>
 </div>
 </div>
 
+<div id="b10-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">平行线性质与判定</span><span class="tag">三角形（边、角、内角和）</span>
+<span class="tag">勾股定理</span><span class="tag">等腰/等边三角形</span>
+<span class="tag">全等三角形判定与证明</span>
+<span class="tag">四边形（平行四边形、矩形、菱形、正方形、梯形）</span>
+<span class="tag">多边形</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头11 -->
 <div class="bone-card bone-11">
 <div class="bone-title"><span class="emoji">🦴</span> 骨头11：到中心一样远（圆的）</div>
-<div class="poem" style="margin:0.5em 0">
-绳子绑在树🌳上走一圈——圆。<br>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b11-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b11-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b11-exam')">📝 中考</span>
+</div>
+
+<div id="b11-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>圆</td><td>"绳子绑在柱子上拉着走一圈"</td><td>绳子绑在树🌳上走一圈</td></tr>
+<tr><td>π</td><td>"绕一圈÷穿过圆=3.14"</td><td>不管多大的圆，总是3倍多一点</td></tr>
+<tr><td>弧/扇形</td><td>"圆上切一段=弧，两条半径+弧=扇形"</td><td>切蛋糕🍰——切一块就是扇形</td></tr>
+<tr><td>切线</td><td>"刚好碰到圆——距离=半径"</td><td>车轮刚好碰到地面</td></tr>
+<tr><td>椭圆</td><td>"到两个钉子的距离之和都一样"</td><td>两个钉子📌一根绳子绷着画一圈</td></tr>
+</table>
+</div>
+
+<div id="b11-song" class="tab-content">
+<div class="poem">
+你拿一根绳子绑在柱子上，拉着走一圈——圆。<br>
 不管圆多大，周长÷直径永远是3.14——π。<br>
-<span class="key">8件衣服：圆、π、弧、扇形、切线、椭圆。</span>
+圆里面有多大=πr²，切一段=弧，两条半径+弧=扇形。<br>
+<br>
+<span class="key">22件衣服底下，都是同一件事：到中心一样远。</span>
 </div>
 </div>
 
+<div id="b11-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">圆的基本性质</span><span class="tag">垂径定理</span><span class="tag">圆心角/圆周角</span>
+<span class="tag">弧长/扇形面积</span><span class="tag">切线</span><span class="tag">圆与直线位置关系</span>
+<span class="tag">圆与圆位置关系</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头12 -->
 <div class="bone-card bone-12">
 <div class="bone-title"><span class="emoji">🦴</span> 骨头12：动了还跟没动一样（对称）</div>
-<div class="poem" style="margin:0.5em 0">
-照镜子🪞——举右手镜子里也举右手。<br>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b12-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b12-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b12-exam')">📝 中考</span>
+</div>
+
+<div id="b12-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>轴对称</td><td>"照镜子——举右手镜子里也举右手"</td><td>照镜子🪞</td></tr>
+<tr><td>中心对称</td><td>"转180度还是原来的样子"</td><td>风车🌬️转半圈</td></tr>
+<tr><td>全等</td><td>"移动后完全重合"</td><td>两块一样的拼图🧩叠在一起</td></tr>
+<tr><td>相似</td><td>"等比放大缩小"</td><td>照片放大了人还是那个人</td></tr>
+<tr><td>三视图</td><td>"从三个方向看同一个东西"</td><td>杯子☕从前面看有把手，从上面看是圆形</td></tr>
+</table>
+</div>
+
+<div id="b12-song" class="tab-content">
+<div class="poem">
+你站在镜子前面举右手，镜子里的你也举右手。<br>
+轴对称翻过来还一样，中心对称转半圈还一样。<br>
 全等是完全重合，相似是形状一样大小不同。<br>
-<span class="key">6件衣服：轴对称、中心对称、全等、相似、三视图。</span>
+<br>
+<span class="key">12件衣服底下，都是同一件事：动了还跟没动一样。</span>
 </div>
 </div>
 
+<div id="b12-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">轴对称</span><span class="tag">中心对称</span><span class="tag">全等三角形</span>
+<span class="tag">相似三角形</span><span class="tag">位似</span><span class="tag">三视图</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头13 -->
 <div class="bone-card bone-13">
 <div class="bone-title"><span class="emoji">🦴</span> 骨头13：你说多近我都能更近（无限接近）</div>
-<div class="poem" style="margin:0.5em 0">
-你说差1厘米我走到差1毫米——极限不是遗憾，是主动权。<br>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b13-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b13-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b13-exam')">📝 中考</span>
+</div>
+
+<div id="b13-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>极限</td><td>"你说差1厘米我走到差1毫米"</td><td>站在墙前面——差1步走半步，差半步走四分之一步</td></tr>
+<tr><td>最值</td><td>"二次函数的最高/最低点"</td><td>抛物线的顶点——最高或最低</td></tr>
+<tr><td>收敛</td><td>"1/2+1/4+1/8+…加起来=1"</td><td>每次走一半路——走不完但加起来刚好1</td></tr>
+</table>
+</div>
+
+<div id="b13-song" class="tab-content">
+<div class="poem">
+你说还差1厘米，我走到差1毫米。<br>
+你说还差1毫米，我走到差0.1毫米。<br>
+你说多近我都能更近——极限不是遗憾，是主动权。<br>
 0.999…=1，不是约等于，是等于。<br>
-<span class="key">3件衣服：极限、最值、收敛。</span>
+<br>
+<span class="key">10件衣服底下，都是同一件事：无限接近。</span>
 </div>
 </div>
 
+<div id="b13-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">极限（初步）</span><span class="tag">二次函数最值</span><span class="tag">数列趋势</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头14 -->
 <div class="bone-card bone-14">
 <div class="bone-title"><span class="emoji">🦴</span> 骨头14：用你知道的推你不知道的（从已知推未知）</div>
-<div class="poem" style="margin:0.5em 0">
-所有猫都有尾巴→咪咪是猫→咪咪有尾巴——演绎。<br>
-你见过3只天鹅都是白的→所有天鹅都是白的？——归纳。<br>
-<span class="key">6件衣服：命题、证明、辅助线、反证法。</span>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b14-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b14-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b14-exam')">📝 中考</span>
+</div>
+
+<div id="b14-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>命题/逆命题</td><td>"正着推和反着推，可信度不一样"</td><td>所有猫都有尾巴→咪咪是猫→咪咪有尾巴</td></tr>
+<tr><td>证明</td><td>"一步步告诉我为什么"</td><td>你说这块拼图🧩能放这里——为什么？</td></tr>
+<tr><td>辅助线</td><td>"给推理搭桥——补一条线"</td><td>已知和未知之间差一步——补一条线连上</td></tr>
+<tr><td>反证法</td><td>"假设反过来，如果崩了就证明原命题对"</td><td>你说你没吃糖🍬——但嘴巴是甜的——矛盾！</td></tr>
+</table>
+</div>
+
+<div id="b14-song" class="tab-content">
+<div class="poem">
+所有的鸟都会飞，鸵鸟是鸟，所以鸵鸟会飞？<br>
+形式对但事实错——演绎负责验证。<br>
+你见过3只天鹅都是白的，所以所有天鹅都是白的？<br>
+第101只可能是黑的——归纳负责发现。<br>
+<br>
+<span class="key">9件衣服底下，都是同一件事：用你知道的推出你不知道的。</span>
 </div>
 </div>
 
+<div id="b14-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">命题与逆命题</span><span class="tag">几何证明</span><span class="tag">辅助线</span>
+<span class="tag">反证法</span>
+</div>
+</div>
+</div>
+
+<!-- 骨头15 -->
 <div class="bone-card bone-15">
 <div class="bone-title"><span class="emoji">🦴</span> 骨头15：如果这样会怎样（假设检验）</div>
-<div class="poem" style="margin:0.5em 0">
-你猜盒子里是红球，摸出一个红的再摸还是红的——越来越确定。<br>
-但摸出一个白的——再改。贝叶斯。<br>
-<span class="key">5件衣服：概率、统计、样本、随机事件。</span>
+
+<div class="tabs">
+<span class="tab active" onclick="switchTab(this,'b15-speed')">🔍 速查</span>
+<span class="tab" onclick="switchTab(this,'b15-song')">🎵 儿歌</span>
+<span class="tab" onclick="switchTab(this,'b15-exam')">📝 中考</span>
+</div>
+
+<div id="b15-speed" class="tab-content active">
+<table>
+<tr><th>教科书说的</th><th>怎么跟贝贝说</th><th>贝贝最熟悉的场景</th></tr>
+<tr><td>概率</td><td>"全部里摸到想要的有多可能"</td><td>口袋里3红7白，闭眼摸一颗</td></tr>
+<tr><td>统计</td><td>"大量比较后的近似"</td><td>扔硬币100次——大概50次正面</td></tr>
+<tr><td>样本与总体</td><td>"用一小部分假设整体"</td><td>尝一口汤就知道整锅咸不咸</td></tr>
+<tr><td>随机事件</td><td>"假设会发生什么→验证"</td><td>明天下雨不下雨？不确定但可以猜</td></tr>
+</table>
+</div>
+
+<div id="b15-song" class="tab-content">
+<div class="poem">
+你猜盒子里是红球，摸出一个红的再摸还是红的。<br>
+你越来越确定——但摸出一个白的——再改。<br>
+看到新证据更新判断——贝叶斯。<br>
+<br>
+<span class="key">5件衣服底下，都是同一件事：如果这样会怎样。</span>
+</div>
+</div>
+
+<div id="b15-exam" class="tab-content">
+<div class="exam-tags">
+<span class="tag">概率（树状图、列表法）</span>
+<span class="tag">统计（平均数、中位数、众数、方差）</span>
+<span class="tag">统计图表</span><span class="tag">样本与总体</span>
+</div>
 </div>
 </div>
 
@@ -583,11 +892,13 @@ sin是你的高度cos是你的宽度。<br>
 <table>
 <tr><th>混血概念</th><th>踩了哪几根骨头</th><th>一句话故事</th></tr>
 <tr><td>一次函数图像</td><td>绑定+标点+直的</td><td>两个量绑在一起→每对值是一个点→连成直线</td></tr>
-<tr><td>二次函数图像</td><td>绑定+标点+对称</td><td>两个量绑在一起→每对值是一个点→连成抛物线</td></tr>
+<tr><td>二次函数图像</td><td>绑定+标点+对称</td><td>两个量绑在一起→每对值是一个点→连成抛物线，关于对称轴对称</td></tr>
 <tr><td>三角函数</td><td>旋转+标点+比率</td><td>转一个角度→停下来有坐标→高度÷斜边=sin</td></tr>
+<tr><td>解直角三角形</td><td>直的+旋转+比率</td><td>直角三角形→一个锐角确定形状→边的比值确定</td></tr>
 <tr><td>坐标几何</td><td>标点+形状</td><td>点有坐标→坐标满足方程→方程描述形状</td></tr>
 <tr><td>圆的方程</td><td>圆的+标点+比较</td><td>到圆心距离相等→每个点有坐标→距离=半径</td></tr>
 <tr><td>概率</td><td>比较+重复+假设检验</td><td>可能÷全部→重复试验→频率趋近概率</td></tr>
+<tr><td>方程与函数</td><td>逆向比较+绑定</td><td>方程是函数值等于某个数时的逆向比较</td></tr>
 </table>
 
 <!-- ==================== 第四部分：快速查表 ==================== -->
@@ -602,13 +913,13 @@ sin是你的高度cos是你的宽度。<br>
 <tr><td>求原价/方程/移项/因式分解</td><td>骨头3·倒着推</td><td>速查+儿歌</td></tr>
 <tr><td>规律/周期/乘方/下一个</td><td>骨头4·再来一次</td><td>速查+儿歌</td></tr>
 <tr><td>函数/图像/斜率/截距</td><td>骨头5·你动我跟着动</td><td>速查+儿歌</td></tr>
-<tr><td>速度/变化率/导数</td><td>骨头6·动得多快</td><td>速查+儿歌</td></tr>
+<tr><td>导数/积分/速度/变化率</td><td>骨头6·动得多快</td><td>速查+儿歌</td></tr>
 <tr><td>坐标/位置/负数坐标</td><td>骨头7·这个点在这里</td><td>速查+儿歌</td></tr>
 <tr><td>向量/方向/点乘</td><td>骨头8·从这里到那里</td><td>速查+儿歌</td></tr>
 <tr><td>i/复数/三角函数/角度</td><td>骨头9·绕着转</td><td>速查+儿歌</td></tr>
-<tr><td>平行/垂直/勾股/全等</td><td>骨头10·拉紧的绳子</td><td>速查+儿歌</td></tr>
-<tr><td>圆/椭圆/π/切线</td><td>骨头11·到中心一样远</td><td>速查+儿歌</td></tr>
-<tr><td>对称/相似/三视图</td><td>骨头12·动了还跟没动一样</td><td>速查+儿歌</td></tr>
+<tr><td>平行/垂直/勾股/体积</td><td>骨头10·拉紧的绳子</td><td>速查+儿歌</td></tr>
+<tr><td>圆/椭圆/圆锥曲线/π</td><td>骨头11·到中心一样远</td><td>速查+儿歌</td></tr>
+<tr><td>对称/奇偶性/三视图</td><td>骨头12·动了还跟没动一样</td><td>速查+儿歌</td></tr>
 <tr><td>极限/无穷/收敛</td><td>骨头13·你说多近我都能更近</td><td>速查+儿歌</td></tr>
 <tr><td>证明/充分/必要/归纳</td><td>骨头14·用你知道的推你不知道的</td><td>速查+儿歌</td></tr>
 <tr><td>反证/贝叶斯/假设</td><td>骨头15·如果这样会怎样</td><td>速查+儿歌</td></tr>
