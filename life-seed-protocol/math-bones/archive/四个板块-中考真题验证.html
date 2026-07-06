@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四个板块 × 中考真题 · 实战验证</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0a0a1a;
+    color: #e0e0e0;
+    padding: 24px 16px;
+    line-height: 1.7;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 4px;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sub { text-align: center; color: #777; font-size: 13px; margin-bottom: 28px; }
+
+  /* 分值占比饼图 */
+  .pie-section {
+    margin-bottom: 30px;
+  }
+  .pie-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffd200;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .pie-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .pie-item {
+    text-align: center;
+    padding: 18px 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .pie-item:nth-child(1) { background: rgba(78,205,196,0.08); border-color: rgba(78,205,196,0.2); }
+  .pie-item:nth-child(2) { background: rgba(247,151,30,0.08); border-color: rgba(247,151,30,0.2); }
+  .pie-item:nth-child(3) { background: rgba(255,210,0,0.08); border-color: rgba(255,210,0,0.2); }
+  .pie-item:nth-child(4) { background: rgba(244,67,54,0.08); border-color: rgba(244,67,54,0.2); }
+  .pie-pct {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pie-item:nth-child(1) .pie-pct { color: #4ecdc4; }
+  .pie-item:nth-child(2) .pie-pct { color: #f7971e; }
+  .pie-item:nth-child(3) .pie-pct { color: #ffd200; }
+  .pie-item:nth-child(4) .pie-pct { color: #ef5350; }
+  .pie-label { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .pie-detail { font-size: 11px; color: #888; }
+  .pie-note {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #666;
+  }
+
+  /* 每个板块详细 */
+  .board {
+    margin-bottom: 20px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .board-header {
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .b1 .board-header { background: rgba(78,205,196,0.1); color: #4ecdc4; }
+  .b2 .board-header { background: rgba(247,151,30,0.1); color: #f7971e; }
+  .b3 .board-header { background: rgba(255,210,0,0.1); color: #ffd200; }
+  .b4 .board-header { background: rgba(244,67,54,0.1); color: #ef5350; }
+  .board-pct {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: auto;
+  }
+  .board-body { padding: 16px 20px; }
+  /* 表格 */
+  .exam-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+  .exam-table th {
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 12px;
+    color: #888;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-weight: 600;
+  }
+  .exam-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+  .exam-table tr:last-child td { border-bottom: none; }
+  .freq-stars { color: #ffd200; letter-spacing: 2px; }
+  .diff-badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .diff-easy { background: rgba(76,175,80,0.15); color: #81c784; }
+  .diff-med { background: rgba(255,152,0,0.15); color: #ffb74d; }
+  .diff-hard { background: rgba(244,67,54,0.15); color: #ef5350; }
+  .bone-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    margin: 1px 2px;
+  }
+  .bt-g1 { background: rgba(78,205,196,0.15); color: #4ecdc4; }
+  .bt-g2 { background: rgba(69,183,209,0.15); color: #45b7d1; }
+  .bt-g3 { background: rgba(150,206,180,0.15); color: #96ceb4; }
+  .bt-g4 { background: rgba(247,151,30,0.15); color: #f7971e; }
+  .bt-g5 { background: rgba(255,210,0,0.15); color: #ffd200; }
+  .board-note {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    font-size: 12px;
+    color: #999;
+    border-left: 3px solid rgba(255,210,0,0.3);
+  }
+  .board-note strong { color: #ffd200; }
+
+  /* 结论 */
+  .conclusion {
+    margin-top: 28px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,210,0,0.2);
+  }
+  .conclusion-header {
+    padding: 14px 20px;
+    background: rgba(255,210,0,0.08);
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffd200;
+  }
+  .conclusion-body {
+    padding: 16px 20px;
+  }
+  .conclusion-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .conclusion-row:last-child { margin-bottom: 0; }
+  .conclusion-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .ci1 { background: rgba(78,205,196,0.2); }
+  .ci2 { background: rgba(247,151,30,0.2); }
+  .ci3 { background: rgba(255,210,0,0.2); }
+  .ci4 { background: rgba(244,67,54,0.2); }
+
+  .quote {
+    text-align: center;
+    padding: 20px;
+    margin-top: 28px;
+    background: linear-gradient(135deg, rgba(247,151,30,0.1), rgba(255,210,0,0.05));
+    border-radius: 14px;
+    border: 1px solid rgba(247,151,30,0.2);
+  }
+  .quote p {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 2;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @media (max-width: 600px) {
+    .pie-grid { grid-template-columns: repeat(2, 1fr); }
+    .exam-table { font-size: 11px; }
+    .exam-table th, .exam-table td { padding: 5px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📊 四个板块 × 中考真题</h1>
+<p class="sub">中考实际考了什么 · 每个板块占多少分 · 软柿子在哪</p>
+
+<!-- 分值占比 -->
+<div class="pie-section">
+  <div class="pie-title">中考数学 150 分 · 四个板块实际占比</div>
+  <div class="pie-grid">
+    <div class="pie-item">
+      <div class="pie-pct">45%</div>
+      <div class="pie-label">计算/代数</div>
+      <div class="pie-detail">≈67分 · 选择填空+解答</div>
+    </div>
+    <div class="pie-item">
+      <div class="pie-pct">37%</div>
+      <div class="pie-label">几何</div>
+      <div class="pie-detail">≈55分 · 选择填空+大题</div>
+    </div>
+    <div class="pie-item">
+      <div class="pie-pct">13%</div>
+      <div class="pie-label">统计/概率</div>
+      <div class="pie-detail">≈20分 · 解答题</div>
+    </div>
+    <div class="pie-item">
+      <div class="pie-pct">5%</div>
+      <div class="pie-label">排列组合/数论</div>
+      <div class="pie-detail">中考不直接考 · 保送掐尖考</div>
+    </div>
+  </div>
+  <div class="pie-note">数据来源：近3年各省中考真题统计（惠州/广东/江西/济南等）</div>
+</div>
+
+<!-- 板块1：计算/代数 -->
+<div class="board b1">
+  <div class="board-header">
+    ① 计算/代数
+    <span class="board-pct">≈67分 · 45%</span>
+  </div>
+  <div class="board-body">
+    <table class="exam-table">
+      <thead>
+        <tr>
+          <th>考点</th>
+          <th>考频</th>
+          <th>难度</th>
+          <th>题型</th>
+          <th>骨头</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>实数运算</strong>（有理数、绝对值、科学记数法）</td>
+          <td><span class="freq-stars">★★★★★</span></td>
+          <td><span class="diff-badge diff-easy">★ 简单</span></td>
+          <td>选择、填空</td>
+          <td><span class="bone-tag bt-g1">直接比较</span></td>
+        </tr>
+        <tr>
+          <td><strong>整式与分式</strong>（因式分解、分式化简）</td>
+          <td><span class="freq-stars">★★★★★</span></td>
+          <td><span class="diff-badge diff-med">★★ 中等</span></td>
+          <td>填空、解答</td>
+          <td><span class="bone-tag bt-g1">逆向比较</span><span class="bone-tag bt-g2">比率比较</span></td>
+        </tr>
+        <tr>
+          <td><strong>一元一次方程/不等式</strong></td>
+          <td><span class="freq-stars">★★★★★</span></td>
+          <td><span class="diff-badge diff-easy">★★ 中等</span></td>
+          <td>选择、解答</td>
+          <td><span class="bone-tag bt-g1">逆向比较</span></td>
+        </tr>
+        <tr>
+          <td><strong>一元二次方程</strong></td>
+          <td><span class="freq-stars">★★★★☆</span></td>
+          <td><span class="diff-badge diff-med">★★ 中等</span></td>
+          <td>选择、解答</td>
+          <td><span class="bone-tag bt-g1">逆向比较</span></td>
+        </tr>
+        <tr>
+          <td><strong>一次函数</strong>（图象、性质、应用）</td>
+          <td><span class="freq-stars">★★★★★</span></td>
+          <td><span class="diff-badge diff-med">★★ 中等</span></td>
+          <td>选择、解答</td>
+          <td><span class="bone-tag bt-g2">绑定</span><span class="bone-tag bt-g2">快慢</span></td>
+        </tr>
+        <tr>
+          <td><strong>反比例函数</strong></td>
+          <td><span class="freq-stars">★★☆☆☆</span></td>
+          <td><span class="diff-badge diff-med">★★ 中等</span></td>
+          <td>选择、解答</td>
+          <td><span class="bone-tag bt-g2">绑定</span></td>
+        </tr>
+        <tr>
+          <td><strong>二次函数</strong>（图象、顶点、综合）</td>
+          <td><span class="freq-stars">★★★★★</span></td>
+          <td><span class="diff-badge diff-hard">★★★ 难</span></td>
+          <td>填空、压轴解答</td>
+          <td><span class="bone-tag bt-g2">绑定</span><span class="bone-tag bt-g2">快慢</span></td>
+        </tr>
+        <tr>
+          <td><strong>不等式组</strong></td>
+          <td><span class="freq-stars">★★★★☆</span></td>
+          <td><span class="diff-badge diff-easy">★ 简单</span></td>
+          <td>选择、填空</td>
+          <td><span class="bone-tag bt-g1">逆向比较</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="board-note">
+      <strong>软柿子：</strong>实数运算（★简单+每年必考）、不等式组（★简单+常考）→ 先吃。<br>
+      <strong>硬柿子：</strong>二次函数（★★★难+压轴题）→ 后啃。<br>
+      <strong>管道：</strong>计算→代数→函数，同一条线。小学巧算的套路到了高中还是同一个。
+    </div>
+  </div>
+</div>
+
+<!-- 板块2：几何 -->
+<div class="board b2">
+  <div class="board-header">
+    ② 几何
+    <span class="board-pct">≈55分 · 37%</span>
+  </div>
+  <div class="board-body">
+    <table class="exam-table">
+      <thead>
+        <tr>
+          <th>考点</th>
+          <th>考频</th>
+          <th>难度</th>
+          <th>题型</th>
+          <th>骨头</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>三角形全等</strong></td>
+          <td><span class="freq-stars">★★★★★</span></td>
+          <td><span class="diff-badge diff-med">★★ 中等</span></td>
+          <td>选择、解答</td>
+          <td><span class="bone-tag bt-g4">直的</span><span class="bone-tag bt-g4">对称</span></td>
+        </tr>
+        <tr>
+          <td><strong>三角形相似</strong></td>
+          <td><span class="freq-stars">★★★★★</span></td>
+          <td><span class="diff-badge diff-hard">★★★ 难</span></td>
+          <td>解答（压轴）</td>
+          <td><span class="bone-tag bt-g4">直的</span><span class="bone-tag bt-g2">比率比较</span></td>
+        </tr>
+        <tr>
+          <td><strong>勾股定理</strong></td>
+          <td><span class="freq-stars">★★★★★</span></td>
+          <td><span class="diff-badge diff-med">★★ 中等</span></td>
+          <td>选择、解答</td>
+          <td><span class="bone-tag bt-g4">直的</span></td>
+        </tr>
+        <tr>
+          <td><strong>四边形</strong>（平行四边形、矩形、菱形）</td>
+          <td><span class="freq-stars">★★★★☆</span></td>
+          <td><span class="diff-badge diff-med">★★ 中等</span></td>
+          <td>填空、解答</td>
+          <td><span class="bone-tag bt-g4">直的</span><span class="bone-tag bt-g4">对称</span></td>
+        </tr>
+        <tr>
+          <td><strong>圆</strong>（切线、圆周角、圆心角）</td>
+          <td><span class="freq-stars">★★★☆☆</span></td>
+          <td><span class="diff-badge diff-hard">★★★ 难</span></td>
+          <td>选择、解答</td>
+          <td><span class="bone-tag bt-g4">圆的</span></td>
+        </tr>
+        <tr>
+          <td><strong>图形变换</strong>（平移、旋转、折叠）</td>
+          <td><span class="freq-stars">★★★☆☆</span></td>
+          <td><span class="diff-badge diff-med">★★ 中等</span></td>
+          <td>选择、填空</td>
+          <td><span class="bone-tag bt-g3">移动</span><span class="bone-tag bt-g4">对称</span></td>
+        </tr>
+        <tr>
+          <td><strong>坐标几何</strong>（点的坐标、象限）</td>
+          <td><span class="freq-stars">★★★★☆</span></td>
+          <td><span class="diff-badge diff-easy">★ 简单</span></td>
+          <td>选择、填空</td>
+          <td><span class="bone-tag bt-g3">标点</span></td>
+        </tr>
+        <tr>
+          <td><strong>锐角三角函数</strong></td>
+          <td><span class="freq-stars">★★☆☆☆</span></td>
+          <td><span class="diff-badge diff-med">★★ 中等</span></td>
+          <td>解答</td>
+          <td><span class="bone-tag bt-g4">直的</span><span class="bone-tag bt-g2">比率比较</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="board-note">
+      <strong>软柿子：</strong>坐标几何（★简单+常考）、全等三角形（★★中等+每年必考）→ 先吃。<br>
+      <strong>硬柿子：</strong>相似三角形（★★★难+压轴题）、圆（★★★难）→ 后啃。<br>
+      <strong>管道：</strong>小学飞镖燕尾→初中全等相似→高中解析几何。同一个结构换了衣服。
+    </div>
+  </div>
+</div>
+
+<!-- 板块3：排列组合/计数 -->
+<div class="board b3">
+  <div class="board-header">
+    ③ 排列组合/计数原理
+    <span class="board-pct">中考≈3分 · 保送掐尖=主力</span>
+  </div>
+  <div class="board-body">
+    <table class="exam-table">
+      <thead>
+        <tr>
+          <th>考点</th>
+          <th>考频</th>
+          <th>难度</th>
+          <th>题型</th>
+          <th>骨头</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>概率基础</strong>（古典概率、列表/树状图）</td>
+          <td><span class="freq-stars">★★★★★</span></td>
+          <td><span class="diff-badge diff-easy">★ 简单</span></td>
+          <td>解答</td>
+          <td><span class="bone-tag bt-g1">比率比较</span><span class="bone-tag bt-g5">从已知推未知</span></td>
+        </tr>
+        <tr>
+          <td><strong>计数问题</strong>（分类、分步）</td>
+          <td><span class="freq-stars">★★☆☆☆</span></td>
+          <td><span class="diff-badge diff-med">★★ 中等</span></td>
+          <td>选择、填空</td>
+          <td><span class="bone-tag bt-g5">从已知推未知</span><span class="bone-tag bt-g2">重复</span></td>
+        </tr>
+        <tr>
+          <td><strong>统计</strong>（平均数、中位数、众数、方差）</td>
+          <td><span class="freq-stars">★★★★★</span></td>
+          <td><span class="diff-badge diff-easy">★ 简单</span></td>
+          <td>解答</td>
+          <td><span class="bone-tag bt-g1">直接比较</span><span class="bone-tag bt-g2">比率比较</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="board-note">
+      <strong>中考现实：</strong>排列组合和数论在中考里<strong>不直接考</strong>。概率和统计考，但属于比较组（比率比较）。<br>
+      <strong>但是：</strong>排列组合和数论是<strong>保送、掐尖、强基计划</strong>的主力。天津五所小卷考排列组合+数论。今年高考压轴题考的就是数论。<br>
+      <strong>策略：</strong>中考阶段先拿概率统计的分。排列组合和数论留给保送/掐尖/高中准备。
+    </div>
+  </div>
+</div>
+
+<!-- 板块4：数论/余数 -->
+<div class="board b4">
+  <div class="board-header">
+    ④ 数论/余数
+    <span class="board-pct">中考≈0分 · 高考压轴=主力</span>
+  </div>
+  <div class="board-body">
+    <table class="exam-table">
+      <thead>
+        <tr>
+          <th>考点</th>
+          <th>考频</th>
+          <th>难度</th>
+          <th>题型</th>
+          <th>骨头</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>因数倍数</strong>（最大公因数、最小公倍数）</td>
+          <td><span class="freq-stars">★★★☆☆</span></td>
+          <td><span class="diff-badge diff-easy">★ 简单</span></td>
+          <td>选择、填空</td>
+          <td><span class="bone-tag bt-g1">直接比较</span></td>
+        </tr>
+        <tr>
+          <td><strong>整除性判断</strong></td>
+          <td><span class="freq-stars">★★☆☆☆</span></td>
+          <td><span class="diff-badge diff-easy">★ 简单</span></td>
+          <td>选择</td>
+          <td><span class="bone-tag bt-g1">直接比较</span></td>
+        </tr>
+        <tr>
+          <td><strong>数论证明</strong>（同余、不定方程）</td>
+          <td><span class="freq-stars">☆☆☆☆☆</span></td>
+          <td><span class="diff-badge diff-hard">★★★★ 极难</span></td>
+          <td>中考不考</td>
+          <td><span class="bone-tag bt-g5">假设检验</span><span class="bone-tag bt-g5">从已知推未知</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="board-note">
+      <strong>中考现实：</strong>数论在中考里<strong>几乎不考</strong>。只有因数倍数这种比较组的基础题。<br>
+      <strong>但是：</strong>数论是<strong>数学王冠上的明珠</strong>。今年高考压轴题考了。强基计划考了。天津五所小卷考了。<br>
+      <strong>策略：</strong>中考阶段不花时间。但贝贝如果对数学有天赋，数论是最好的培养材料——同时锻炼比较和推理两组骨头。
+    </div>
+  </div>
+</div>
+
+<!-- 结论 -->
+<div class="conclusion">
+  <div class="conclusion-header">🎯 结论：中考阶段怎么分配时间</div>
+  <div class="conclusion-body">
+    <div class="conclusion-row">
+      <div class="conclusion-icon ci1">①</div>
+      <div>
+        <strong style="color:#4ecdc4">计算/代数：花45%时间</strong><br>
+        占45%分值（≈67分）。软柿子最多：实数运算、不等式组、一次方程都是简单+必考。先拿满这部分。
+      </div>
+    </div>
+    <div class="conclusion-row">
+      <div class="conclusion-icon ci2">②</div>
+      <div>
+        <strong style="color:#f7971e">几何：花37%时间</strong><br>
+        占37%分值（≈55分）。坐标几何和全等三角形是软柿子。相似和圆是硬柿子，后面啃。
+      </div>
+    </div>
+    <div class="conclusion-row">
+      <div class="conclusion-icon ci3">③</div>
+      <div>
+        <strong style="color:#ffd200">统计/概率：花13%时间</strong><br>
+        占13%分值（≈20分）。概率和统计都是简单+必考。性价比极高，花最少时间拿最多分。
+      </div>
+    </div>
+    <div class="conclusion-row">
+      <div class="conclusion-icon ci4">④</div>
+      <div>
+        <strong style="color:#ef5350">排列组合/数论：花5%时间</strong><br>
+        中考不直接考。但留着——保送掐尖用、高中用、一辈子用。中考阶段不花时间，但不要丢掉。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 金句 -->
+<div class="quote">
+  <p>中考阶段：计算和几何是主战场<br>软柿子先吃，硬柿子后啃<br><br>排列组合和数论是种子<br>现在种下，保送掐尖时开花<br>高考压轴时结果</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中考数学·十五根骨头倒推实操方案</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0a0a1a;
+    color: #e0e0e0;
+    padding: 20px;
+    line-height: 1.7;
+  }
+  .container { max-width: 960px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 6px;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sub { text-align: center; color: #888; font-size: 13px; margin-bottom: 30px; }
+  /* 核心逻辑 */
+  .core {
+    background: linear-gradient(135deg, rgba(247,151,30,0.1), rgba(255,210,0,0.05));
+    border: 1px solid rgba(247,151,30,0.25);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .core p { font-size: 15px; }
+  .core .big { font-size: 18px; font-weight: 700; color: #ffd200; margin: 8px 0; }
+  /* 五组骨头 */
+  .group {
+    margin-bottom: 24px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .group-header {
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .group-header .num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: #0a0a1a;
+    flex-shrink: 0;
+  }
+  .g1 .group-header { background: rgba(78,205,196,0.15); }
+  .g1 .num { background: #4ecdc4; }
+  .g2 .group-header { background: rgba(69,183,209,0.15); }
+  .g2 .num { background: #45b7d1; }
+  .g3 .group-header { background: rgba(150,206,180,0.15); }
+  .g3 .num { background: #96ceb4; }
+  .g4 .group-header { background: rgba(247,151,30,0.15); }
+  .g4 .num { background: #f7971e; }
+  .g5 .group-header { background: rgba(255,210,0,0.15); }
+  .g5 .num { background: #ffd200; }
+  .bones { padding: 0; }
+  .bone {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    gap: 14px;
+    transition: background 0.15s;
+  }
+  .bone:hover { background: rgba(255,255,255,0.03); }
+  .bone-name {
+    flex-shrink: 0;
+    width: 110px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .bone-exam { flex: 1; font-size: 13px; color: #bbb; }
+  .badge {
+    flex-shrink: 0;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 60px;
+  }
+  .freq5 { background: rgba(76,175,80,0.2); color: #81c784; }
+  .freq4 { background: rgba(139,195,74,0.2); color: #aed581; }
+  .freq3 { background: rgba(255,193,7,0.2); color: #ffd54f; }
+  .freq1 { background: rgba(158,158,158,0.2); color: #9e9e9e; }
+  .diff-easy { background: rgba(76,175,80,0.15); color: #81c784; }
+  .diff-med { background: rgba(255,152,0,0.15); color: #ffb74d; }
+  .diff-hard { background: rgba(244,67,54,0.15); color: #ef5350; }
+  /* 三个月路径 */
+  .month {
+    margin-bottom: 20px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .month-header {
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .m1 .month-header { background: rgba(78,205,196,0.12); color: #4ecdc4; }
+  .m2 .month-header { background: rgba(69,183,209,0.12); color: #45b7d1; }
+  .m3 .month-header { background: rgba(247,151,30,0.12); color: #f7971e; }
+  .week {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    gap: 12px;
+    font-size: 13px;
+  }
+  .week-label {
+    flex-shrink: 0;
+    width: 50px;
+    color: #888;
+    font-size: 12px;
+  }
+  .week-content { flex: 1; }
+  .week-score {
+    flex-shrink: 0;
+    font-weight: 700;
+    color: #ffd200;
+    font-size: 14px;
+  }
+  /* 底部 */
+  .quote {
+    text-align: center;
+    padding: 24px;
+    margin-top: 30px;
+    background: linear-gradient(135deg, rgba(247,151,30,0.1), rgba(255,210,0,0.05));
+    border-radius: 14px;
+    border: 1px solid rgba(247,151,30,0.2);
+  }
+  .quote p {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 2;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tip {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    font-size: 13px;
+    color: #aaa;
+  }
+  .tip strong { color: #ffd200; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🎯 中考数学·十五根骨头倒推</h1>
+<p class="sub">先看题，再学习。按骨头分，不按课本分。软柿子先吃。</p>
+
+<div class="core">
+  <p>课本按衣服分：代数、几何、函数 → 几百章</p>
+  <p class="big">我们按骨头分：比较→变化→位置→形状→推理 → 十五根</p>
+  <p>一根骨头通了，上面所有衣服都会了。</p>
+</div>
+
+<!-- 五组骨头 × 考频 × 难度 -->
+<div class="group g1">
+  <div class="group-header"><span class="num">1</span> 比较 · 地基中的地基</div>
+  <div class="bones">
+    <div class="bone">
+      <div class="bone-name">🦴 直接比较</div>
+      <div class="bone-exam">有理数运算、数轴、绝对值、科学记数法、因数倍数</div>
+      <span class="badge freq5">每年必考</span>
+      <span class="badge diff-easy">★ 简单</span>
+    </div>
+    <div class="bone">
+      <div class="bone-name">🦴 比率比较</div>
+      <div class="bone-exam">比例、百分数、折扣、浓度、概率、统计</div>
+      <span class="badge freq5">每年必考</span>
+      <span class="badge diff-easy">★★ 中等</span>
+    </div>
+    <div class="bone">
+      <div class="bone-name">🦴 逆向比较</div>
+      <div class="bone-exam">方程、不等式</div>
+      <span class="badge freq5">每年必考</span>
+      <span class="badge diff-med">★★ 中等</span>
+    </div>
+  </div>
+</div>
+
+<div class="group g2">
+  <div class="group-header"><span class="num">2</span> 变化 · 函数的核心</div>
+  <div class="bones">
+    <div class="bone">
+      <div class="bone-name">🦴 重复</div>
+      <div class="bone-exam">乘方、数列规律、周期问题</div>
+      <span class="badge freq3">偶尔考</span>
+      <span class="badge diff-med">★★ 中等</span>
+    </div>
+    <div class="bone">
+      <div class="bone-name">🦴 绑定</div>
+      <div class="bone-exam">一次函数、二次函数、反比例函数</div>
+      <span class="badge freq5">每年必考</span>
+      <span class="badge diff-hard">★★★ 难</span>
+    </div>
+    <div class="bone">
+      <div class="bone-name">🦴 快慢</div>
+      <div class="bone-exam">斜率、实际问题变化率</div>
+      <span class="badge freq4">常考</span>
+      <span class="badge diff-med">★★ 中等</span>
+    </div>
+  </div>
+</div>
+
+<div class="group g3">
+  <div class="group-header"><span class="num">3</span> 位置 · 坐标系</div>
+  <div class="bones">
+    <div class="bone">
+      <div class="bone-name">🦴 标点</div>
+      <div class="bone-exam">坐标系、点的坐标、象限</div>
+      <span class="badge freq4">常考</span>
+      <span class="badge diff-easy">★ 简单</span>
+    </div>
+    <div class="bone">
+      <div class="bone-name">🦴 移动</div>
+      <div class="bone-exam">平移、旋转、坐标变换</div>
+      <span class="badge freq3">偶尔考</span>
+      <span class="badge diff-med">★★ 中等</span>
+    </div>
+    <div class="bone">
+      <div class="bone-name">🦴 旋转</div>
+      <div class="bone-exam">复数（高中内容）</div>
+      <span class="badge freq1">中考不考</span>
+      <span class="badge diff-easy">— 跳过</span>
+    </div>
+  </div>
+</div>
+
+<div class="group g4">
+  <div class="group-header"><span class="num">4</span> 形状 · 几何</div>
+  <div class="bones">
+    <div class="bone">
+      <div class="bone-name">🦴 直的</div>
+      <div class="bone-exam">三角形、平行四边形、全等、相似、勾股定理</div>
+      <span class="badge freq5">每年必考</span>
+      <span class="badge diff-hard">★★~★★★ 跨度大</span>
+    </div>
+    <div class="bone">
+      <div class="bone-name">🦴 圆的</div>
+      <div class="bone-exam">圆的性质、切线、弧长、扇形</div>
+      <span class="badge freq4">常考</span>
+      <span class="badge diff-hard">★★★ 难</span>
+    </div>
+    <div class="bone">
+      <div class="bone-name">🦴 对称</div>
+      <div class="bone-exam">轴对称、中心对称、折叠</div>
+      <span class="badge freq3">偶尔考</span>
+      <span class="badge diff-med">★★ 中等</span>
+    </div>
+  </div>
+</div>
+
+<div class="group g5">
+  <div class="group-header"><span class="num">5</span> 推理 · 压轴题领地</div>
+  <div class="bones">
+    <div class="bone">
+      <div class="bone-name">🦴 无限接近</div>
+      <div class="bone-exam">极限（高中内容）</div>
+      <span class="badge freq1">中考不考</span>
+      <span class="badge diff-easy">— 跳过</span>
+    </div>
+    <div class="bone">
+      <div class="bone-name">🦴 从已知推未知</div>
+      <div class="bone-exam">几何证明、代数推理</div>
+      <span class="badge freq4">常考</span>
+      <span class="badge diff-hard">★★★★ 压轴</span>
+    </div>
+    <div class="bone">
+      <div class="bone-name">🦴 假设检验</div>
+      <div class="bone-exam">反证法（偶尔）</div>
+      <span class="badge freq1">偶尔</span>
+      <span class="badge diff-hard">★★★ 难</span>
+    </div>
+  </div>
+</div>
+
+<!-- 三个月冲刺 -->
+<h2 style="font-size:20px; margin:30px 0 16px; color:#ffd200;">📅 三个月冲刺路径</h2>
+
+<div class="month m1">
+  <div class="month-header">🟢 第一个月：比较组 + 位置基础 → 稳拿30分</div>
+  <div class="week">
+    <div class="week-label">第1周</div>
+    <div class="week-content"><strong>骨头1·直接比较</strong> — 有理数运算、数轴、绝对值、科学记数法</div>
+    <div class="week-score">+8分</div>
+  </div>
+  <div class="week">
+    <div class="week-label">第2周</div>
+    <div class="week-content"><strong>骨头2·比率比较</strong> — 比例、百分数、折扣、浓度、概率基础</div>
+    <div class="week-score">+8分</div>
+  </div>
+  <div class="week">
+    <div class="week-label">第3周</div>
+    <div class="week-content"><strong>骨头3·逆向比较</strong> — 一元一次方程、一元一次不等式</div>
+    <div class="week-score">+6分</div>
+  </div>
+  <div class="week">
+    <div class="week-label">第4周</div>
+    <div class="week-content"><strong>骨头7·标点</strong> — 坐标系、点的坐标、象限判断</div>
+    <div class="week-score">+4分</div>
+  </div>
+</div>
+
+<div class="month m2">
+  <div class="month-header">🔵 第二个月：变化组 + 形状基础 → 再拿15分</div>
+  <div class="week">
+    <div class="week-label">第5周</div>
+    <div class="week-content"><strong>骨头5·绑定（简单）</strong> — 一次函数图象、性质、象限</div>
+    <div class="week-score">+5分</div>
+  </div>
+  <div class="week">
+    <div class="week-label">第6周</div>
+    <div class="week-content"><strong>骨头6·快慢</strong> — 一次函数实际应用（行程、工程）</div>
+    <div class="week-score">+4分</div>
+  </div>
+  <div class="week">
+    <div class="week-label">第7周</div>
+    <div class="week-content"><strong>骨头10·直的（基础）</strong> — 三角形全等、勾股定理基础</div>
+    <div class="week-score">+4分</div>
+  </div>
+  <div class="week">
+    <div class="week-label">第8周</div>
+    <div class="week-content"><strong>骨头12·对称</strong> — 轴对称、折叠问题</div>
+    <div class="week-score">+2分</div>
+  </div>
+</div>
+
+<div class="month m3">
+  <div class="month-header">🟡 第三个月：硬骨头 + 查漏补缺 → 再拿5~10分</div>
+  <div class="week">
+    <div class="week-label">第9周</div>
+    <div class="week-content"><strong>骨头5·绑定（难）</strong> — 二次函数图象、顶点、对称轴</div>
+    <div class="week-score">+3分</div>
+  </div>
+  <div class="week">
+    <div class="week-label">第10周</div>
+    <div class="week-content"><strong>骨头5+10</strong> — 二次函数与几何综合</div>
+    <div class="week-score">+2分</div>
+  </div>
+  <div class="week">
+    <div class="week-label">第11周</div>
+    <div class="week-content"><strong>骨头11·圆的</strong> — 圆的基本性质、切线</div>
+    <div class="week-score">+2分</div>
+  </div>
+  <div class="week">
+    <div class="week-label">第12周</div>
+    <div class="week-content"><strong>全面查漏</strong> — 回顾错题，重新映射到骨头</div>
+    <div class="week-score">+3分</div>
+  </div>
+</div>
+
+<div class="tip">
+  <strong>🔑 每个知识点怎么练：</strong><br>
+  ① 看考频 → 高频才花时间<br>
+  ② 看题型 → 归纳就那几种"花招"<br>
+  ③ 脱衣服 → 问"这道题底下是哪根骨头？"能用自己的话说清楚 = 通了<br>
+  ④ 针对性练 → 只做真题考过的、不做难题<br>
+  ⑤ 错题映射 → 做错了查"断在哪根骨头"，修一根通一片
+</div>
+
+<div class="quote">
+  <p>课本是按衣服分的<br>我们是按骨头分的<br><br>衣服有几百件<br>骨头只有十五根<br><br>认出骨头，衣服自己会穿</p>
+</div>
+
+</div>
+</body>
+</html>

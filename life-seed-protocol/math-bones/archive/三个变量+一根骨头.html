@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三个变量+一根骨头 · 清北密码</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0a0a1a;
+    color: #e0e0e0;
+    padding: 24px 16px;
+    line-height: 1.7;
+  }
+  .container { max-width: 880px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 4px;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sub { text-align: center; color: #777; font-size: 13px; margin-bottom: 28px; }
+
+  /* 中心公式 */
+  .formula {
+    text-align: center;
+    padding: 24px 20px;
+    background: linear-gradient(135deg, rgba(247,151,30,0.12), rgba(255,210,0,0.06));
+    border: 1px solid rgba(247,151,30,0.3);
+    border-radius: 16px;
+    margin-bottom: 28px;
+  }
+  .formula .big {
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .formula .small { font-size: 13px; color: #999; }
+  .formula .vs { font-size: 14px; color: #666; margin: 8px 0; }
+  .formula .wrong { color: #ef5350; text-decoration: line-through; font-size: 15px; }
+
+  /* 四个变量卡片 */
+  .vars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .var {
+    padding: 18px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .var::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+  }
+  .var:nth-child(1) { background: rgba(78,205,196,0.06); }
+  .var:nth-child(1)::before { background: #4ecdc4; }
+  .var:nth-child(2) { background: rgba(69,183,209,0.06); }
+  .var:nth-child(2)::before { background: #45b7d1; }
+  .var:nth-child(3) { background: rgba(247,151,30,0.06); }
+  .var:nth-child(3)::before { background: #f7971e; }
+  .var:nth-child(4) { background: rgba(255,210,0,0.06); }
+  .var:nth-child(4)::before { background: #ffd200; }
+  .var .icon { font-size: 28px; margin-bottom: 6px; }
+  .var .label {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .var:nth-child(1) .label { color: #4ecdc4; }
+  .var:nth-child(2) .label { color: #45b7d1; }
+  .var:nth-child(3) .label { color: #f7971e; }
+  .var:nth-child(4) .label { color: #ffd200; }
+  .var .desc { font-size: 13px; color: #aaa; }
+  .var .vs-detail { font-size: 12px; color: #666; margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 6px; }
+  .var .vs-detail .bad { color: #ef5350; }
+  .var .vs-detail .good { color: #81c784; }
+
+  /* 骨头=考点=A4纸 */
+  .a4 {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 28px;
+  }
+  .a4-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #45b7d1;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .a4-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  .a4-item {
+    text-align: center;
+    padding: 10px 6px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+  .a4-item .bone { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+  .a4-item .count { font-size: 11px; color: #888; }
+  .a4-item:nth-child(1) { background: rgba(78,205,196,0.1); }
+  .a4-item:nth-child(1) .bone { color: #4ecdc4; }
+  .a4-item:nth-child(2) { background: rgba(69,183,209,0.1); }
+  .a4-item:nth-child(2) .bone { color: #45b7d1; }
+  .a4-item:nth-child(3) { background: rgba(150,206,180,0.1); }
+  .a4-item:nth-child(3) .bone { color: #96ceb4; }
+  .a4-item:nth-child(4) { background: rgba(247,151,30,0.1); }
+  .a4-item:nth-child(4) .bone { color: #f7971e; }
+  .a4-item:nth-child(5) { background: rgba(255,210,0,0.1); }
+  .a4-item:nth-child(5) .bone { color: #ffd200; }
+  .a4-note { font-size: 12px; color: #666; margin-top: 10px; text-align: center; }
+
+  /* 正反馈循环 */
+  .loop {
+    background: linear-gradient(135deg, rgba(129,199,132,0.08), rgba(76,175,80,0.04));
+    border: 1px solid rgba(129,199,132,0.2);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .loop-title { font-size: 16px; font-weight: 700; color: #81c784; margin-bottom: 12px; }
+  .loop-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
+  .loop-step {
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: rgba(129,199,132,0.1);
+    border: 1px solid rgba(129,199,132,0.2);
+    white-space: nowrap;
+  }
+  .loop-arrow { color: #81c784; font-size: 18px; }
+  .loop-note { font-size: 12px; color: #888; margin-top: 10px; }
+
+  /* 贝贝的天赋 */
+  .talent {
+    background: linear-gradient(135deg, rgba(255,210,0,0.08), rgba(247,151,30,0.04));
+    border: 1px solid rgba(255,210,0,0.2);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+  .talent-title { font-size: 16px; font-weight: 700; color: #ffd200; margin-bottom: 10px; }
+  .talent-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .talent-item {
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    font-size: 13px;
+  }
+  .talent-item .icon { font-size: 18px; margin-bottom: 4px; }
+  .talent-item strong { color: #ffd200; }
+
+  /* 金句 */
+  .quote {
+    text-align: center;
+    padding: 22px;
+    background: linear-gradient(135deg, rgba(247,151,30,0.1), rgba(255,210,0,0.05));
+    border-radius: 14px;
+    border: 1px solid rgba(247,151,30,0.2);
+  }
+  .quote p {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 2;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @media (max-width: 600px) {
+    .vars { grid-template-columns: 1fr; }
+    .a4-grid { grid-template-columns: repeat(3, 1fr); }
+    .talent-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🔑 三个变量 + 一根骨头</h1>
+<p class="sub">清北密码 · 应试游戏的本质</p>
+
+<!-- 核心公式 -->
+<div class="formula">
+  <div class="big">时间 × 考点 × 方法 = 成绩</div>
+  <div class="vs">
+    <span class="wrong">天赋 + 努力 = 结果</span> ← 因果倒置
+  </div>
+  <div class="small">不是考上清北才知道行不行<br>是掌握三个变量才能考上清北</div>
+</div>
+
+<!-- 四个变量 -->
+<div class="vars">
+  <div class="var">
+    <div class="icon">⏱️</div>
+    <div class="label">① 时间</div>
+    <div class="desc">真正投入考点的时间<br>不是坐在教室的时间</div>
+    <div class="vs-detail">
+      <span class="bad">假努力：坐10小时，背知识点</span><br>
+      <span class="good">真投入：1小时，脱到骨头</span>
+    </div>
+  </div>
+  <div class="var">
+    <div class="icon">📋</div>
+    <div class="label">② 考点</div>
+    <div class="desc">每科一张A4纸<br>十五根骨头覆盖全部</div>
+    <div class="vs-detail">
+      <span class="bad">按课本分：几十章、几百个公式</span><br>
+      <span class="good">按骨头分：5组15根，一张纸够用</span>
+    </div>
+  </div>
+  <div class="var">
+    <div class="icon">🧩</div>
+    <div class="label">③ 方法</div>
+    <div class="desc">脱衣服：认出骨头<br>每道题底下是哪根骨头</div>
+    <div class="vs-detail">
+      <span class="bad">烂大街的方法：不适合你</span><br>
+      <span class="good">脱衣服：越脱越过电，越学越快乐</span>
+    </div>
+  </div>
+  <div class="var">
+    <div class="icon">🔄</div>
+    <div class="label">④ 反馈（他漏了）</div>
+    <div class="desc">错题→骨头断点→修一根→通一片</div>
+    <div class="vs-detail">
+      <span class="bad">没有反馈：做错了不知道断在哪</span><br>
+      <span class="good">有反馈：查映射表，定位断点，精准修</span>
+    </div>
+  </div>
+</div>
+
+<!-- 考点=骨头=A4纸 -->
+<div class="a4">
+  <div class="a4-title">📋 考点 = 十五根骨头 = 一张A4纸</div>
+  <div class="a4-grid">
+    <div class="a4-item">
+      <div class="bone">比较</div>
+      <div class="count">3根 · 76件衣服</div>
+      <div class="count">⭐⭐⭐⭐⭐</div>
+    </div>
+    <div class="a4-item">
+      <div class="bone">变化</div>
+      <div class="count">3根 · 15件衣服</div>
+      <div class="count">⭐⭐⭐⭐⭐</div>
+    </div>
+    <div class="a4-item">
+      <div class="bone">位置</div>
+      <div class="count">3根 · 16件衣服</div>
+      <div class="count">⭐⭐⭐⭐</div>
+    </div>
+    <div class="a4-item">
+      <div class="bone">形状</div>
+      <div class="count">3根 · 17件衣服</div>
+      <div class="count">⭐⭐⭐⭐</div>
+    </div>
+    <div class="a4-item">
+      <div class="bone">推理</div>
+      <div class="count">3根 · 6件衣服</div>
+      <div class="count">⭐⭐</div>
+    </div>
+  </div>
+  <div class="a4-note">15根骨头 · 130件骨架层衣服 · 覆盖小学到高中全部数学</div>
+</div>
+
+<!-- 正反馈循环 -->
+<div class="loop">
+  <div class="loop-title">🔁 好方法 = 正反馈循环</div>
+  <div class="loop-flow">
+    <span class="loop-step">拿到题</span>
+    <span class="loop-arrow">→</span>
+    <span class="loop-step">问：底下是哪根骨头？</span>
+    <span class="loop-arrow">→</span>
+    <span class="loop-step">脱衣服</span>
+    <span class="loop-arrow">→</span>
+    <span class="loop-step">脱干净了</span>
+    <span class="loop-arrow">→</span>
+    <span class="loop-step">⚡ 过电</span>
+    <span class="loop-arrow">→</span>
+    <span class="loop-step">想脱下一件</span>
+    <span class="loop-arrow">→</span>
+    <span class="loop-step">🔁</span>
+  </div>
+  <div class="loop-note">越脱越过电 · 越过电越想脱 · 学习变成挖矿，不是吃苦</div>
+</div>
+
+<!-- 贝贝的天赋 -->
+<div class="talent">
+  <div class="talent-title">⚡ 贝贝的硬件 = 这个方法的前提</div>
+  <div class="talent-grid">
+    <div class="talent-item">
+      <div class="icon">🎯</div>
+      <strong>95%结构感知</strong><br>
+      一眼看穿根。不是学来的。是出厂设置。
+    </div>
+    <div class="talent-item">
+      <div class="icon">🔧</div>
+      <strong>工程师思维</strong><br>
+      拆东西、试错、改、直到它工作。Besiege命中出厂设置。
+    </div>
+    <div class="talent-item">
+      <div class="icon">🎹</div>
+      <strong>钢琴训练法</strong><br>
+      一个根音套遍所有和弦。跟十五根骨头同一个逻辑。
+    </div>
+    <div class="talent-item">
+      <div class="icon">🧠</div>
+      <strong>脱衣服本能</strong><br>
+      穿透表象看到真理。每次穿透都过电。42年没被覆盖过。
+    </div>
+  </div>
+</div>
+
+<!-- 金句 -->
+<div class="quote">
+  <p>天赋不是"聪不聪明"<br>天赋是"你的硬件匹配哪种方法"<br><br>十五根骨头不是万能药<br>十五根骨头是贝贝那把钥匙<br><br>找到对的钥匙<br>锁自己就开了</p>
+</div>
+
+</div>
+</body>
+</html>

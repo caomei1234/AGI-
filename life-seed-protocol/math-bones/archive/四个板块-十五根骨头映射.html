@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四个板块 × 十五根骨头 · 映射</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0a0a1a;
+    color: #e0e0e0;
+    padding: 24px 16px;
+    line-height: 1.7;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 4px;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sub { text-align: center; color: #777; font-size: 13px; margin-bottom: 28px; }
+
+  /* 总览表 */
+  .overview {
+    margin-bottom: 30px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .overview table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .overview th {
+    padding: 12px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .overview th:first-child { text-align: left; padding-left: 16px; }
+  .overview td {
+    padding: 10px 8px;
+    font-size: 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .overview td:first-child {
+    text-align: left;
+    padding-left: 16px;
+    font-weight: 600;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .overview tr:last-child td { border-bottom: none; }
+  .th-g1 { color: #4ecdc4; }
+  .th-g2 { color: #45b7d1; }
+  .th-g3 { color: #96ceb4; }
+  .th-g4 { color: #f7971e; }
+  .th-g5 { color: #ffd200; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 2px; }
+  .dot-main { background: #ffd200; } /* 主力 */
+  .dot-support { background: rgba(255,210,0,0.3); } /* 辅助 */
+  .dot-none { background: rgba(255,255,255,0.08); } /* 不涉及 */
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 10px 0 6px;
+    font-size: 12px;
+    color: #888;
+  }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+
+  /* 四个板块详细 */
+  .board {
+    margin-bottom: 20px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .board-header {
+    padding: 16px 20px;
+    font-size: 17px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .b1 .board-header { background: rgba(78,205,196,0.1); color: #4ecdc4; }
+  .b2 .board-header { background: rgba(247,151,30,0.1); color: #f7971e; }
+  .b3 .board-header { background: rgba(255,210,0,0.1); color: #ffd200; }
+  .b4 .board-header { background: rgba(244,67,54,0.1); color: #ef5350; }
+  .board-pipe {
+    font-size: 12px;
+    color: #888;
+    font-weight: 400;
+    margin-left: auto;
+  }
+  .board-body { padding: 16px 20px; }
+  .board-section {
+    margin-bottom: 14px;
+  }
+  .board-section:last-child { margin-bottom: 0; }
+  .board-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .bone-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 2px 3px 2px 0;
+  }
+  .bt-g1 { background: rgba(78,205,196,0.15); color: #4ecdc4; }
+  .bt-g2 { background: rgba(69,183,209,0.15); color: #45b7d1; }
+  .bt-g3 { background: rgba(150,206,180,0.15); color: #96ceb4; }
+  .bt-g4 { background: rgba(247,151,30,0.15); color: #f7971e; }
+  .bt-g5 { background: rgba(255,210,0,0.15); color: #ffd200; }
+  .board-examples {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 4px;
+    padding-left: 12px;
+  }
+  .board-examples li { margin-bottom: 2px; }
+  .board-note {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    font-size: 12px;
+    color: #999;
+    border-left: 3px solid rgba(255,210,0,0.3);
+  }
+
+  /* 纵向管道 */
+  .pipeline {
+    margin-bottom: 28px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 18px 20px;
+  }
+  .pipeline-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #45b7d1;
+    margin-bottom: 14px;
+  }
+  .pipe {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  .pipe:last-child { margin-bottom: 0; }
+  .pipe-label {
+    flex-shrink: 0;
+    width: 80px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .pipe-stage {
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .pipe-arrow { color: #555; font-size: 16px; }
+  .p1 .pipe-label { color: #4ecdc4; }
+  .p1 .pipe-stage { background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.2); }
+  .p2 .pipe-label { color: #f7971e; }
+  .p2 .pipe-stage { background: rgba(247,151,30,0.1); border: 1px solid rgba(247,151,30,0.2); }
+  .p3 .pipe-label { color: #ffd200; }
+  .p3 .pipe-stage { background: rgba(255,210,0,0.1); border: 1px solid rgba(255,210,0,0.2); }
+  .p4 .pipe-label { color: #ef5350; }
+  .p4 .pipe-stage { background: rgba(244,67,54,0.1); border: 1px solid rgba(244,67,54,0.2); }
+
+  /* 金句 */
+  .quote {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(247,151,30,0.1), rgba(255,210,0,0.05));
+    border-radius: 14px;
+    border: 1px solid rgba(247,151,30,0.2);
+  }
+  .quote p {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 2;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @media (max-width: 600px) {
+    .overview { font-size: 11px; }
+    .overview th, .overview td { padding: 6px 4px; }
+    .pipe { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📊 四个板块 × 十五根骨头</h1>
+<p class="sub">纵向管道（学什么） × 横向结构（怎么学） → 合起来</p>
+
+<!-- 总览表 -->
+<div class="overview">
+  <table>
+    <thead>
+      <tr>
+        <th>板块</th>
+        <th class="th-g1">比较<br>3根</th>
+        <th class="th-g2">变化<br>3根</th>
+        <th class="th-g3">位置<br>3根</th>
+        <th class="th-g4">形状<br>3根</th>
+        <th class="th-g5">推理<br>3根</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>① 计算/巧算</td>
+        <td><span class="dot dot-main"></span><span class="dot dot-main"></span><span class="dot dot-main"></span></td>
+        <td><span class="dot dot-main"></span><span class="dot dot-main"></span><span class="dot dot-support"></span></td>
+        <td><span class="dot dot-support"></span><span class="dot dot-none"></span><span class="dot dot-none"></span></td>
+        <td><span class="dot dot-none"></span><span class="dot dot-none"></span><span class="dot dot-none"></span></td>
+        <td><span class="dot dot-support"></span><span class="dot dot-none"></span><span class="dot dot-none"></span></td>
+      </tr>
+      <tr>
+        <td>② 几何</td>
+        <td><span class="dot dot-support"></span><span class="dot dot-support"></span><span class="dot dot-none"></span></td>
+        <td><span class="dot dot-none"></span><span class="dot dot-support"></span><span class="dot dot-support"></span></td>
+        <td><span class="dot dot-main"></span><span class="dot dot-main"></span><span class="dot dot-support"></span></td>
+        <td><span class="dot dot-main"></span><span class="dot dot-main"></span><span class="dot dot-main"></span></td>
+        <td><span class="dot dot-support"></span><span class="dot dot-main"></span><span class="dot dot-none"></span></td>
+      </tr>
+      <tr>
+        <td>③ 排列组合</td>
+        <td><span class="dot dot-main"></span><span class="dot dot-none"></span><span class="dot dot-support"></span></td>
+        <td><span class="dot dot-main"></span><span class="dot dot-none"></span><span class="dot dot-none"></span></td>
+        <td><span class="dot dot-none"></span><span class="dot dot-none"></span><span class="dot dot-none"></span></td>
+        <td><span class="dot dot-none"></span><span class="dot dot-none"></span><span class="dot dot-support"></span></td>
+        <td><span class="dot dot-support"></span><span class="dot dot-main"></span><span class="dot dot-main"></span></td>
+      </tr>
+      <tr>
+        <td>④ 数论/余数</td>
+        <td><span class="dot dot-main"></span><span class="dot dot-none"></span><span class="dot dot-main"></span></td>
+        <td><span class="dot dot-main"></span><span class="dot dot-none"></span><span class="dot dot-none"></span></td>
+        <td><span class="dot dot-none"></span><span class="dot dot-none"></span><span class="dot dot-none"></span></td>
+        <td><span class="dot dot-none"></span><span class="dot dot-none"></span><span class="dot dot-none"></span></td>
+        <td><span class="dot dot-support"></span><span class="dot dot-main"></span><span class="dot dot-main"></span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="legend">
+    <span><span class="dot dot-main"></span> 主力骨头</span>
+    <span><span class="dot dot-support"></span> 辅助骨头</span>
+    <span><span class="dot dot-none"></span> 不涉及</span>
+  </div>
+</div>
+
+<!-- 纵向管道 -->
+<div class="pipeline">
+  <div class="pipeline-title">🔄 纵向管道：同一个能力从小学到高考一路通</div>
+  <div class="pipe p1">
+    <div class="pipe-label">计算/巧算</div>
+    <div class="pipe-stage">小学：凑整·配凑·分组</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">初中：代数·因式分解</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">高中：函数·分式根式</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">一辈子：套路固定，学了就占便宜</div>
+  </div>
+  <div class="pipe p2">
+    <div class="pipe-label">几何</div>
+    <div class="pipe-stage">小学：飞镖·燕尾·立体</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">初中：全等·相似·圆</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">高中：解析几何·立体几何</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">压轴题：活灵活现考这两个板块</div>
+  </div>
+  <div class="pipe p3">
+    <div class="pipe-label">排列组合</div>
+    <div class="pipe-stage">小学：计数·分类·搭配</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">初中：概率基础</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">高中：排列组合·二项式</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">大学/工科：动态规划</div>
+  </div>
+  <div class="pipe p4">
+    <div class="pipe-label">数论/余数</div>
+    <div class="pipe-stage">小学：整除·余数·因数</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">初中：同余·不定方程</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">高中：压轴题（今年高考考了）</div>
+    <span class="pipe-arrow">→</span>
+    <div class="pipe-stage">数学王冠上的明珠</div>
+  </div>
+</div>
+
+<!-- 板块1：计算/巧算 -->
+<div class="board b1">
+  <div class="board-header">
+    ① 计算/巧算
+    <span class="board-pipe">小学奥数 → 初中代数 → 高中函数 · 一辈子占便宜</span>
+  </div>
+  <div class="board-body">
+    <div class="board-section">
+      <div class="board-section-title">🦴 主力骨头</div>
+      <div>
+        <span class="bone-tag bt-g1">骨头1·直接比较</span>
+        <span class="bone-tag bt-g1">骨头2·比率比较</span>
+        <span class="bone-tag bt-g1">骨头3·逆向比较</span>
+        <span class="bone-tag bt-g2">骨头4·重复</span>
+        <span class="bone-tag bt-g2">骨头5·绑定</span>
+      </div>
+    </div>
+    <div class="board-section">
+      <div class="board-section-title">📝 具体考什么</div>
+      <ul class="board-examples">
+        <li><strong>凑整</strong>：25×44 = 25×(40+4) → 骨头1（直接比较·拆分）</li>
+        <li><strong>配凑</strong>：a²+b² = (a+b)²-2ab → 骨头3（逆向比较·已知结果倒推）</li>
+        <li><strong>分组</strong>：1+2+3+...+100 → 骨头4（重复·规律）</li>
+        <li><strong>因式分解</strong>：x²-5x+6 = (x-2)(x-3) → 骨头3（逆向比较·拆开）</li>
+        <li><strong>分式化简</strong>：约分、通分 → 骨头2（比率比较）</li>
+      </ul>
+    </div>
+    <div class="board-note">
+      <strong>核心洞察：</strong>计算的本质是"比较的不同变形"。凑整是比较的拆分，因式分解是逆向比较，分式是比率比较。小学学的巧算套路到了高中还是同一个东西——只是衣服换了。
+    </div>
+  </div>
+</div>
+
+<!-- 板块2：几何 -->
+<div class="board b2">
+  <div class="board-header">
+    ② 几何
+    <span class="board-pipe">小学奥数 → 初中60%内容 → 高中压轴 · 会做就是尖子生</span>
+  </div>
+  <div class="board-body">
+    <div class="board-section">
+      <div class="board-section-title">🦴 主力骨头</div>
+      <div>
+        <span class="bone-tag bt-g4">骨头10·直的</span>
+        <span class="bone-tag bt-g4">骨头11·圆的</span>
+        <span class="bone-tag bt-g4">骨头12·对称</span>
+        <span class="bone-tag bt-g3">骨头7·标点</span>
+        <span class="bone-tag bt-g3">骨头8·移动</span>
+      </div>
+    </div>
+    <div class="board-section">
+      <div class="board-section-title">📝 具体考什么</div>
+      <ul class="board-examples">
+        <li><strong>飞镖模型</strong>：三角形内角关系 → 骨头10（直的·三角形）</li>
+        <li><strong>燕尾模型</strong>：面积比例 → 骨头10+骨头2（直的+比率）</li>
+        <li><strong>全等/相似</strong>：对应边角关系 → 骨头10（直的）+骨头12（对称）</li>
+        <li><strong>圆的性质</strong>：圆周角、切线 → 骨头11（圆的）</li>
+        <li><strong>坐标几何</strong>：点在坐标系里的位置 → 骨头7（标点）</li>
+        <li><strong>折叠问题</strong>：轴对称 → 骨头12（对称）</li>
+      </ul>
+    </div>
+    <div class="board-note">
+      <strong>核心洞察：</strong>几何的本质是"位置+形状"。飞镖燕尾是形状的组合，全等是对称+移动，坐标是标点+形状。小学奥数的飞镖燕尾到了初中全等相似是同一个结构——认出骨头，衣服自己会穿。
+    </div>
+  </div>
+</div>
+
+<!-- 板块3：排列组合 -->
+<div class="board b3">
+  <div class="board-header">
+    ③ 排列组合/计数原理
+    <span class="board-pipe">数学思想 · 实际问题 · 动态规划 · 需要天赋或培养</span>
+  </div>
+  <div class="board-body">
+    <div class="board-section">
+      <div class="board-section-title">🦴 主力骨头</div>
+      <div>
+        <span class="bone-tag bt-g5">骨头14·从已知推未知</span>
+        <span class="bone-tag bt-g5">骨头15·假设检验</span>
+        <span class="bone-tag bt-g1">骨头1·直接比较</span>
+        <span class="bone-tag bt-g2">骨头4·重复</span>
+      </div>
+    </div>
+    <div class="board-section">
+      <div class="board-section-title">📝 具体考什么</div>
+      <ul class="board-examples">
+        <li><strong>分类计数</strong>：做一件事有几种方法 → 骨头14（从已知推未知·分类）</li>
+        <li><strong>分步计数</strong>：先做A再做B有几种 → 骨头4（重复·乘法原理）</li>
+        <li><strong>排列</strong>：顺序有关 → 骨头14（从已知推未知·推理）</li>
+        <li><strong>组合</strong>：顺序无关 → 骨头15（假设检验·反着想）</li>
+        <li><strong>动态规划</strong>：大问题拆成重复的小问题 → 骨头4（重复）的极致</li>
+        <li><strong>概率</strong>：排列组合的应用 → 骨头2（比率比较）+骨头14</li>
+      </ul>
+    </div>
+    <div class="board-note">
+      <strong>核心洞察：</strong>排列组合是"推理"的实战版。不是套公式，是需要"看到结构"——这道题底下是分类还是分步？是排列还是组合？认出结构 = 认出骨头。有天赋的孩子一眼看到结构，没天赋的孩子需要通过它来培养结构感知。这就是为什么他说"需要吃点天赋"。
+    </div>
+  </div>
+</div>
+
+<!-- 板块4：数论/余数 -->
+<div class="board b4">
+  <div class="board-header">
+    ④ 数论/余数
+    <span class="board-pipe">数学王冠上的明珠 · 今年高考压轴题 · 强基/保送必考</span>
+  </div>
+  <div class="board-body">
+    <div class="board-section">
+      <div class="board-section-title">🦴 主力骨头</div>
+      <div>
+        <span class="bone-tag bt-g1">骨头1·直接比较</span>
+        <span class="bone-tag bt-g1">骨头3·逆向比较</span>
+        <span class="bone-tag bt-g5">骨头14·从已知推未知</span>
+        <span class="bone-tag bt-g5">骨头15·假设检验</span>
+      </div>
+    </div>
+    <div class="board-section">
+      <div class="board-section-title">📝 具体考什么</div>
+      <ul class="board-examples">
+        <li><strong>整除性</strong>：能被2/3/5/9整除的特征 → 骨头1（直接比较·识别）</li>
+        <li><strong>余数问题</strong>：除完剩多少 → 骨头3（逆向比较·已知除法求余数）</li>
+        <li><strong>同余</strong>：不同数除以同一个数余数相同 → 骨头1（直接比较·"一样"）</li>
+        <li><strong>不定方程</strong>：有多个解的方程 → 骨头14（从已知推未知·找规律）</li>
+        <li><strong>数论证明</strong>：存在性、唯一性 → 骨头15（假设检验·反证法）</li>
+      </ul>
+    </div>
+    <div class="board-note">
+      <strong>核心洞察：</strong>数论的本质是"在整数世界里做逆向比较和推理"。余数是比较的余数，同余是比较的"相等"，不定方程是从已知推未知。数论之所以难，是因为它同时需要比较和推理两组骨头——骨头断一根就做不出来。但反过来说：数论练好了，比较和推理两组骨头同时强化。
+    </div>
+  </div>
+</div>
+
+<!-- 金句 -->
+<div class="quote">
+  <p>四个板块是柱子（纵向·学什么）<br>十五根骨头是地基（横向·怎么学）<br><br>柱子告诉你：这个能力从一年级到高考一直用<br>地基告诉你：这道题底下是什么操作<br><br>合起来：沿着柱子走，用脱衣服学<br>一辈子占便宜</p>
+</div>
+
+</div>
+</body>
+</html>

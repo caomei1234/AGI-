@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>贝贝的实操路径 · 四个板块 × 十五根骨头</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0a0a1a;
+    color: #e0e0e0;
+    padding: 20px 14px;
+    line-height: 1.7;
+  }
+  .container { max-width: 920px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 4px;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sub { text-align: center; color: #777; font-size: 12px; margin-bottom: 24px; }
+
+  /* 总览路线图 */
+  .roadmap {
+    margin-bottom: 28px;
+    padding: 18px 16px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .roadmap-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffd200;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .roadmap-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .rm-step {
+    padding: 6px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .rm-arrow { color: #555; font-size: 16px; }
+  .rm1 { background: rgba(78,205,196,0.12); color: #4ecdc4; border: 1px solid rgba(78,205,196,0.2); }
+  .rm2 { background: rgba(247,151,30,0.12); color: #f7971e; border: 1px solid rgba(247,151,30,0.2); }
+  .rm3 { background: rgba(255,210,0,0.12); color: #ffd200; border: 1px solid rgba(255,210,0,0.2); }
+  .rm4 { background: rgba(244,67,54,0.08); color: #ef5350; border: 1px solid rgba(244,67,54,0.15); }
+  .rm-note {
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    margin-top: 8px;
+  }
+
+  /* 每个板块 */
+  .board {
+    margin-bottom: 18px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .board-header {
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .b1 .board-header { background: rgba(78,205,196,0.1); color: #4ecdc4; }
+  .b2 .board-header { background: rgba(247,151,30,0.1); color: #f7971e; }
+  .b3 .board-header { background: rgba(255,210,0,0.1); color: #ffd200; }
+  .b4 .board-header { background: rgba(244,67,54,0.06); color: #ef5350; }
+  .board-pct {
+    font-size: 12px;
+    color: #888;
+    font-weight: 400;
+    margin-left: auto;
+  }
+
+  /* 每个知识点卡片 */
+  .point {
+    padding: 12px 16px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .point-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .point-name {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .point-badges {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .freq5 { background: rgba(76,175,80,0.15); color: #81c784; }
+  .freq4 { background: rgba(139,195,74,0.15); color: #aed581; }
+  .freq3 { background: rgba(255,193,7,0.15); color: #ffd54f; }
+  .diff-easy { background: rgba(76,175,80,0.1); color: #81c784; }
+  .diff-med { background: rgba(255,152,0,0.1); color: #ffb74d; }
+  .diff-hard { background: rgba(244,67,54,0.1); color: #ef5350; }
+  .bone-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .bt-g1 { background: rgba(78,205,196,0.12); color: #4ecdc4; }
+  .bt-g2 { background: rgba(69,183,209,0.12); color: #45b7d1; }
+  .bt-g3 { background: rgba(150,206,180,0.12); color: #96ceb4; }
+  .bt-g4 { background: rgba(247,151,30,0.12); color: #f7971e; }
+  .bt-g5 { background: rgba(255,210,0,0.12); color: #ffd200; }
+
+  /* 四步法 */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .step-card {
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+  .step-card .step-label {
+    font-weight: 700;
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+  .step-card .step-content {
+    color: #bbb;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .sc1 { background: rgba(78,205,196,0.06); border: 1px solid rgba(78,205,196,0.1); }
+  .sc1 .step-label { color: #4ecdc4; }
+  .sc2 { background: rgba(69,183,209,0.06); border: 1px solid rgba(69,183,209,0.1); }
+  .sc2 .step-label { color: #45b7d1; }
+  .sc3 { background: rgba(247,151,30,0.06); border: 1px solid rgba(247,151,30,0.1); }
+  .sc3 .step-label { color: #f7971e; }
+  .sc4 { background: rgba(255,210,0,0.06); border: 1px solid rgba(255,210,0,0.1); }
+  .sc4 .step-label { color: #ffd200; }
+
+  /* 错题映射 */
+  .err-map {
+    margin-top: 6px;
+    padding: 6px 10px;
+    background: rgba(244,67,54,0.04);
+    border-radius: 6px;
+    border-left: 3px solid rgba(244,67,54,0.2);
+    font-size: 11px;
+    color: #aaa;
+  }
+  .err-map strong { color: #ef5350; font-size: 11px; }
+
+  /* 底部 */
+  .quote {
+    text-align: center;
+    padding: 18px;
+    margin-top: 24px;
+    background: linear-gradient(135deg, rgba(247,151,30,0.1), rgba(255,210,0,0.05));
+    border-radius: 14px;
+    border: 1px solid rgba(247,151,30,0.2);
+  }
+  .quote p {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 2;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @media (max-width: 600px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .roadmap-flow { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🎯 贝贝的实操路径</h1>
+<p class="sub">先学哪个板块 → 板块里先学什么 → 怎么脱衣服 → 做错了查哪根骨头</p>
+
+<!-- 总览 -->
+<div class="roadmap">
+  <div class="roadmap-title">三年路线图 · 软柿子先吃</div>
+  <div class="roadmap-flow">
+    <span class="rm-step rm1">① 计算·代数 · 初一上</span>
+    <span class="rm-arrow">→</span>
+    <span class="rm-step rm2">② 几何基础 · 初一下</span>
+    <span class="rm-arrow">→</span>
+    <span class="rm-step rm1">③ 函数 · 初二上</span>
+    <span class="rm-arrow">→</span>
+    <span class="rm-step rm2">④ 几何进阶 · 初二下</span>
+    <span class="rm-arrow">→</span>
+    <span class="rm-step rm3">⑤ 统计概率 · 初三上</span>
+    <span class="rm-arrow">→</span>
+    <span class="rm-step rm3">⑥ 查漏+硬骨头 · 初三下</span>
+    <span class="rm-arrow">→</span>
+    <span class="rm-step rm4">⑦ 排列组合/数论 · 保送掐尖</span>
+  </div>
+  <div class="rm-note">每个阶段：看考频 → 挑软柿子 → 脱衣服 → 错题映射</div>
+</div>
+
+<!-- 板块1：计算/代数 -->
+<div class="board b1">
+  <div class="board-header">
+    ① 计算/代数 · 初一上
+    <span class="board-pct">45%分值 · 先打地基</span>
+  </div>
+
+  <!-- 知识点1 -->
+  <div class="point">
+    <div class="point-header">
+      <span class="point-name">实数运算</span>
+      <div class="point-badges">
+        <span class="badge freq5">每年必考</span>
+        <span class="badge diff-easy">★ 简单</span>
+        <span class="bone-tag bt-g1">骨头1·直接比较</span>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card sc1">
+        <div class="step-label">❶ 看考频</div>
+        <div class="step-content">选择/填空第1~3题必考。4~8分。最基础的分。</div>
+      </div>
+      <div class="step-card sc2">
+        <div class="step-label">❷ 脱衣服</div>
+        <div class="step-content">问贝贝："绝对值是什么意思？"<br>答"不管正负只看大小" → ✅骨头通了<br>答"去掉负号" → ❌还在背公式，继续脱</div>
+      </div>
+      <div class="step-card sc3">
+        <div class="step-label">❸ 针对性练</div>
+        <div class="step-content">只练选择填空里的基础计算。不做难题。3~5道不出错 → 过了。</div>
+      </div>
+      <div class="step-card sc4">
+        <div class="step-label">❹ 错题查骨</div>
+        <div class="step-content">做错了 → 问"这道题在比什么？"<br>比大小 → 骨头1断了 → 回速查卡重新看</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 知识点2 -->
+  <div class="point">
+    <div class="point-header">
+      <span class="point-name">整式与分式（因式分解、分式化简）</span>
+      <div class="point-badges">
+        <span class="badge freq5">每年必考</span>
+        <span class="badge diff-med">★★ 中等</span>
+        <span class="bone-tag bt-g1">骨头3·逆向比较</span>
+        <span class="bone-tag bt-g2">骨头2·比率比较</span>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card sc1">
+        <div class="step-label">❶ 看考频</div>
+        <div class="step-content">填空/解答必考。6~8分。因式分解是所有代数的基础。</div>
+      </div>
+      <div class="step-card sc2">
+        <div class="step-label">❷ 脱衣服</div>
+        <div class="step-content">问贝贝："因式分解在干什么？"<br>答"把一个东西拆成两个乘" → ✅骨头通了<br>答"用公式" → ❌还在背公式，问"为什么要拆？"</div>
+      </div>
+      <div class="step-card sc3">
+        <div class="step-label">❸ 针对性练</div>
+        <div class="step-content">因式分解：提公因法、公式法、十字相乘。只练这三种。分式化简：约分、通分。</div>
+      </div>
+      <div class="step-card sc4">
+        <div class="step-label">❹ 错题查骨</div>
+        <div class="step-content">做错了 → 问"这道题是拆开还是合起来？"<br>拆开（因式分解）→ 骨头3断了<br>合起来（分式化简）→ 骨头2断了</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 知识点3 -->
+  <div class="point">
+    <div class="point-header">
+      <span class="point-name">一元一次方程/不等式</span>
+      <div class="point-badges">
+        <span class="badge freq5">每年必考</span>
+        <span class="badge diff-med">★★ 中等</span>
+        <span class="bone-tag bt-g1">骨头3·逆向比较</span>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card sc1">
+        <div class="step-label">❶ 看考频</div>
+        <div class="step-content">选择/解答必考。5~7分。方程是逆向比较的实战。</div>
+      </div>
+      <div class="step-card sc2">
+        <div class="step-label">❷ 脱衣服</div>
+        <div class="step-content">问贝贝："方程在干什么？"<br>答"知道结果倒回去找原因" → ✅骨头通了<br>答"移项变号" → ❌还在背规则，问"为什么要移项？"</div>
+      </div>
+      <div class="step-card sc3">
+        <div class="step-label">❸ 针对性练</div>
+        <div class="step-content">列方程解应用题。重点：行程、工程、打折。只练真题考过的题型。</div>
+      </div>
+      <div class="step-card sc4">
+        <div class="step-label">❹ 错题查骨</div>
+        <div class="step-content">做错了 → 问"已知什么？要求什么？"<br>列不出方程 → 骨头3断了，不会倒推<br>算错 → 骨头1断了，计算基本功</div>
+      </div>
+    </div>
+    <div class="err-map">
+      <strong>错题映射：</strong>方程列不出来 = 不会倒推 = 骨头3（逆向比较）断了。修骨头3 → 所有方程题都会了。
+    </div>
+  </div>
+</div>
+
+<!-- 板块2：几何 -->
+<div class="board b2">
+  <div class="board-header">
+    ② 几何 · 初一下
+    <span class="board-pct">37%分值 · 初中60%是几何</span>
+  </div>
+
+  <div class="point">
+    <div class="point-header">
+      <span class="point-name">坐标几何（点、象限、坐标系）</span>
+      <div class="point-badges">
+        <span class="badge freq4">常考</span>
+        <span class="badge diff-easy">★ 简单</span>
+        <span class="bone-tag bt-g3">骨头7·标点</span>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card sc1">
+        <div class="step-label">❶ 看考频</div>
+        <div class="step-content">选择/填空常考。3~4分。最简单的几何分。</div>
+      </div>
+      <div class="step-card sc2">
+        <div class="step-label">❷ 脱衣服</div>
+        <div class="step-content">问贝贝："坐标是什么？"<br>答"给每个点起名字" → ✅骨头通了<br>答"先横后竖" → ❌还在背步骤，问"为什么要起名字？"</div>
+      </div>
+      <div class="step-card sc3">
+        <div class="step-label">❸ 针对性练</div>
+        <div class="step-content">判断象限、求坐标、关于x/y轴对称的点。简单题为主。</div>
+      </div>
+      <div class="step-card sc4">
+        <div class="step-label">❹ 错题查骨</div>
+        <div class="step-content">做错了 → 骨头7（标点）断了 → 回到"给点起名字"重新理解</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-header">
+      <span class="point-name">三角形全等</span>
+      <div class="point-badges">
+        <span class="badge freq5">每年必考</span>
+        <span class="badge diff-med">★★ 中等</span>
+        <span class="bone-tag bt-g4">骨头10·直的</span>
+        <span class="bone-tag bt-g4">骨头12·对称</span>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card sc1">
+        <div class="step-label">❶ 看考频</div>
+        <div class="step-content">解答题必考。8~10分。几何的半壁江山。</div>
+      </div>
+      <div class="step-card sc2">
+        <div class="step-label">❷ 脱衣服</div>
+        <div class="step-content">问贝贝："全等是什么意思？"<br>答"两个图形完全一样，叠上去刚好重合" → ✅<br>答"SSS、SAS、ASA" → ❌还在背判定，问"为什么要三条？两条够不够？"</div>
+      </div>
+      <div class="step-card sc3">
+        <div class="step-label">❸ 针对性练</div>
+        <div class="step-content">先练找对应边对应角（这是骨头10：直的）。再练写证明过程。</div>
+      </div>
+      <div class="step-card sc4">
+        <div class="step-label">❹ 错题查骨</div>
+        <div class="step-content">找不出对应 → 骨头10（直的）断了<br>不会写证明 → 骨头14（推理）断了<br>先修骨头10，推理以后再说</div>
+      </div>
+    </div>
+    <div class="err-map">
+      <strong>错题映射：</strong>全等证不出来 = 找不到对应边角 = 骨头10（直的）断了。先把三角形的"直"看透 → 全等自然会了。
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-header">
+      <span class="point-name">勾股定理</span>
+      <div class="point-badges">
+        <span class="badge freq5">每年必考</span>
+        <span class="badge diff-med">★★ 中等</span>
+        <span class="bone-tag bt-g4">骨头10·直的</span>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card sc1">
+        <div class="step-label">❶ 看考频</div>
+        <div class="step-content">选择/解答常考。3~5分。直角三角形的核心。</div>
+      </div>
+      <div class="step-card sc2">
+        <div class="step-label">❷ 脱衣服</div>
+        <div class="step-content">问贝贝："勾股定理在说什么？"<br>答"直角三角形三条边有固定关系" → ✅<br>答"a²+b²=c²" → ❌还在背公式，问"为什么是平方？不是立方？"</div>
+      </div>
+      <div class="step-card sc3">
+        <div class="step-label">❸ 针对性练</div>
+        <div class="step-content">已知两边求第三边。只练基础应用。不做综合难题。</div>
+      </div>
+      <div class="step-card sc4">
+        <div class="step-label">❹ 错题查骨</div>
+        <div class="step-content">做错了 → 骨头10（直的）断了 → 回到"两点之间最短"重新理解</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 板块3：统计/概率 -->
+<div class="board b3">
+  <div class="board-header">
+    ③ 统计/概率 · 初三上
+    <span class="board-pct">13%分值 · 性价比最高</span>
+  </div>
+
+  <div class="point">
+    <div class="point-header">
+      <span class="point-name">概率基础（古典概率、列表/树状图）</span>
+      <div class="point-badges">
+        <span class="badge freq5">每年必考</span>
+        <span class="badge diff-easy">★ 简单</span>
+        <span class="bone-tag bt-g1">骨头2·比率比较</span>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card sc1">
+        <div class="step-label">❶ 看考频</div>
+        <div class="step-content">解答题必考。4~6分。花最少时间拿最多分。</div>
+      </div>
+      <div class="step-card sc2">
+        <div class="step-label">❷ 脱衣服</div>
+        <div class="step-content">问贝贝："概率是什么？"<br>答"全部里面摸到想要的有多可能" → ✅<br>答"用公式算" → ❌还在背公式，问"分子是什么？分母是什么？"</div>
+      </div>
+      <div class="step-card sc3">
+        <div class="step-label">❸ 针对性练</div>
+        <div class="step-content">列表法、树状图法。只练这两种。中考概率题就考这两种方法。</div>
+      </div>
+      <div class="step-card sc4">
+        <div class="step-label">❹ 错题查骨</div>
+        <div class="step-content">做错了 → 骨头2（比率比较）断了 → "全部有几种？想要的有几种？"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-header">
+      <span class="point-name">统计（平均数、中位数、众数、方差）</span>
+      <div class="point-badges">
+        <span class="badge freq5">每年必考</span>
+        <span class="badge diff-easy">★ 简单</span>
+        <span class="bone-tag bt-g1">骨头1·直接比较</span>
+        <span class="bone-tag bt-g2">骨头2·比率比较</span>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card sc1">
+        <div class="step-label">❶ 看考频</div>
+        <div class="step-content">解答题必考。4~6分。读图表+算平均数。</div>
+      </div>
+      <div class="step-card sc2">
+        <div class="step-label">❷ 脱衣服</div>
+        <div class="step-content">问贝贝："平均数在干什么？"<br>答"把总数平分给每个人" → ✅<br>答"总数÷份数" → 还行，但问"为什么要平分？"</div>
+      </div>
+      <div class="step-card sc3">
+        <div class="step-label">❸ 针对性练</div>
+        <div class="step-content">读统计图表+计算四个指标。简单题为主。</div>
+      </div>
+      <div class="step-card sc4">
+        <div class="step-label">❹ 错题查骨</div>
+        <div class="step-content">读不懂图表 → 骨头1（直接比较）断了<br>算错 → 骨头2（比率比较）断了</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 板块4：排列组合/数论 -->
+<div class="board b4">
+  <div class="board-header">
+    ④ 排列组合/数论 · 保送掐尖/高中
+    <span class="board-pct">中考不直接考 · 种子现在种</span>
+  </div>
+
+  <div class="point">
+    <div class="point-header">
+      <span class="point-name">计数原理（分类、分步）</span>
+      <div class="point-badges">
+        <span class="badge freq3">偶尔考</span>
+        <span class="badge diff-med">★★ 中等</span>
+        <span class="bone-tag bt-g5">骨头14·从已知推未知</span>
+        <span class="bone-tag bt-g2">骨头4·重复</span>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card sc1">
+        <div class="step-label">❶ 看考频</div>
+        <div class="step-content">中考偶尔考。保送掐尖常考。强基计划主力。</div>
+      </div>
+      <div class="step-card sc2">
+        <div class="step-label">❷ 脱衣服</div>
+        <div class="step-content">问贝贝："穿衣服有几种穿法？先穿内衣再穿外套——这是分类还是分步？"<br>答"分步，一件事做完再做下一件" → ✅</div>
+      </div>
+      <div class="step-card sc3">
+        <div class="step-label">❸ 针对性练</div>
+        <div class="step-content">生活中练：今天穿什么有几种搭配？3件上衣×4条裤子=12种。</div>
+      </div>
+      <div class="step-card sc4">
+        <div class="step-label">❹ 错题查骨</div>
+        <div class="step-content">做错了 → 问"是分类还是分步？"<br>分不清 → 骨头14（推理）断了 → 从生活场景重新理解</div>
+      </div>
+    </div>
+    <div class="err-map">
+      <strong>种子价值：</strong>计数原理培养的是"结构感知"——看到一道题，知道底下是分类还是分步。贝贝95%结构感知的硬件，学这个比别人快。现在种下，保送掐尖时开花。
+    </div>
+  </div>
+
+  <div class="point">
+    <div class="point-header">
+      <span class="point-name">数论基础（余数、整除性）</span>
+      <div class="point-badges">
+        <span class="badge freq3">中考偶尔</span>
+        <span class="badge diff-med">★★ 中等</span>
+        <span class="bone-tag bt-g1">骨头1·直接比较</span>
+        <span class="bone-tag bt-g5">骨头14·从已知推未知</span>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card sc1">
+        <div class="step-label">❶ 看考频</div>
+        <div class="step-content">中考只考因数倍数（简单）。数论证明高考压轴。</div>
+      </div>
+      <div class="step-card sc2">
+        <div class="step-label">❷ 脱衣服</div>
+        <div class="step-content">问贝贝："余数是什么？"<br>答"分不完剩下的" → ✅<br>问"为什么7÷3余1？因为3×2+1=7，余数就是倒推的尾巴"</div>
+      </div>
+      <div class="step-card sc3">
+        <div class="step-label">❸ 针对性练</div>
+        <div class="step-content">因数倍数（中考考的，简单）。同余问题（保送考的，中等）。</div>
+      </div>
+      <div class="step-card sc4">
+        <div class="step-label">❹ 错题查骨</div>
+        <div class="step-content">因数倍数做错 → 骨头1（直接比较）断了<br>余数问题做错 → 骨头3（逆向比较）断了</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 脱衣服万能公式 -->
+<div class="roadmap" style="border-color: rgba(129,199,132,0.2); background: rgba(129,199,132,0.04);">
+  <div class="roadmap-title" style="color: #81c784;">🔑 脱衣服万能公式 · 每个知识点都用这四步</div>
+  <div class="roadmap-flow" style="font-size: 13px;">
+    <span class="rm-step" style="background:rgba(129,199,132,0.12); color:#81c784; border:1px solid rgba(129,199,132,0.2);">① 这道题在问什么？</span>
+    <span class="rm-arrow">→</span>
+    <span class="rm-step" style="background:rgba(129,199,132,0.12); color:#81c784; border:1px solid rgba(129,199,132,0.2);">② 底下是哪根骨头？</span>
+    <span class="rm-arrow">→</span>
+    <span class="rm-step" style="background:rgba(129,199,132,0.12); color:#81c784; border:1px solid rgba(129,199,132,0.2);">③ 用自己的话说清楚</span>
+    <span class="rm-arrow">→</span>
+    <span class="rm-step" style="background:rgba(129,199,132,0.12); color:#81c784; border:1px solid rgba(129,199,132,0.2);">④ 说清楚了=通了</span>
+  </div>
+  <div class="rm-note" style="margin-top: 10px;">
+    <strong style="color: #81c784;">说不清楚 = 还没通 → 往回剥 → 剥到能说清楚的那一层 → 从那里重新长</strong>
+  </div>
+</div>
+
+<!-- 金句 -->
+<div class="quote">
+  <p>沿着柱子走（四个板块·学什么）<br>用脱衣服学（十五根骨头·怎么学）<br>看考频挑软柿子（真题·考什么）<br>做错了查骨头（错题映射·修什么）<br><br>四个东西合在一起<br>就是贝贝的实操路径</p>
+</div>
+
+</div>
+</body>
+</html>
