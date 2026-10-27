@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: "Noto Serif CJK SC", "Noto Sans CJK SC", serif;
+    padding: 28px 24px;
+    width: 720px;
+  }
+  .title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #f85149;
+    text-align: center;
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #8b949e;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .section {
+    margin-bottom: 22px;
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #e3b341;
+    margin-bottom: 10px;
+    border-left: 4px solid #e3b341;
+    padding-left: 10px;
+  }
+  /* 主血条 */
+  .bigbar {
+    display: flex;
+    height: 44px;
+    border: 2px solid #30363d;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .bigbar .used {
+    background: #30363d;
+    height: 100%;
+  }
+  .bigbar .left-nominal {
+    background: #e3b341;
+    height: 100%;
+    opacity: 0.25;
+  }
+  .bigbar .left-real {
+    background: #f85149;
+    height: 100%;
+    box-shadow: 0 0 14px #f85149;
+  }
+  .bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .bar-note {
+    font-size: 13px;
+    color: #f85149;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+  /* 放大条 */
+  .zoom-wrap {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 10px;
+  }
+  .zoom-label {
+    font-size: 12px;
+    color: #8b949e;
+    margin-bottom: 6px;
+  }
+  .zoombar {
+    display: flex;
+    height: 30px;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .zoombar .zn {
+    background: #e3b341;
+    height: 100%;
+    opacity: 0.35;
+  }
+  .zoombar .zr {
+    background: #f85149;
+    height: 100%;
+    box-shadow: 0 0 10px #f85149;
+  }
+  /* 24格物品栏 */
+  .inventory {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+  .cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 3px;
+    color: #0d1117;
+  }
+  .c-sleep { background: #484f58; color: #c9d1d9; }
+  .c-school { background: #1f6feb; color: #fff; }
+  .c-eat { background: #6e7681; color: #fff; }
+  .c-hw { background: #388bfd; color: #fff; }
+  .c-you { background: #f85149; color: #fff; box-shadow: 0 0 10px #f85149; }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+    color: #8b949e;
+    margin-bottom: 4px;
+  }
+  .legend span::before {
+    content: "■";
+    margin-right: 4px;
+  }
+  .l-sleep::before { color: #484f58; }
+  .l-school::before { color: #1f6feb; }
+  .l-eat::before { color: #6e7681; }
+  .l-hw::before { color: #388bfd; }
+  .l-you::before { color: #f85149; }
+  .you-note {
+    font-size: 14px;
+    color: #f85149;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+  /* 底部 */
+  .footer-box {
+    background: #161b22;
+    border: 1px solid #f85149;
+    border-radius: 6px;
+    padding: 14px;
+    text-align: center;
+  }
+  .footer-num {
+    font-size: 30px;
+    font-weight: 900;
+    color: #f85149;
+  }
+  .footer-text {
+    font-size: 14px;
+    color: #c9d1d9;
+    margin-top: 4px;
+    line-height: 1.7;
+  }
+  .footer-compare {
+    font-size: 14px;
+    color: #e3b341;
+    margin-top: 8px;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<div class="title">你的时间 · 血条版</div>
+<div class="subtitle">你能一眼看出发动机还剩多少油。现在，看看你自己的油箱。</div>
+
+<!-- 副本一：中考 -->
+<div class="section">
+  <div class="section-title">副本一：中考 · 还有 630 天</div>
+  <div class="bigbar">
+    <div class="used" style="width:87.7%"></div>
+    <div class="left-nominal" style="width:10.8%"></div>
+    <div class="left-real" style="width:1.5%"></div>
+  </div>
+  <div class="bar-labels">
+    <span style="color:#6e7681">■ 已消耗 87.7%（玩掉 + 小学六年）</span>
+    <span style="color:#8b949e">■ 名义剩 12.3%</span>
+  </div>
+  <div class="bar-note">整条血条里，真正属于你的只有最后这 1.5% —— 每天那 3 小时。</div>
+</div>
+
+<!-- 一天24格 -->
+<div class="section">
+  <div class="section-title">一天 24 格 · 物品栏</div>
+  <div class="inventory">
+    <div class="cell c-sleep">睡</div>
+    <div class="cell c-sleep">睡</div>
+    <div class="cell c-sleep">睡</div>
+    <div class="cell c-sleep">睡</div>
+    <div class="cell c-sleep">睡</div>
+    <div class="cell c-sleep">睡</div>
+    <div class="cell c-school">校</div>
+    <div class="cell c-school">校</div>
+    <div class="cell c-school">校</div>
+    <div class="cell c-school">校</div>
+    <div class="cell c-school">校</div>
+    <div class="cell c-school">校</div>
+    <div class="cell c-school">校</div>
+    <div class="cell c-school">校</div>
+    <div class="cell c-school">校</div>
+    <div class="cell c-school">校</div>
+    <div class="cell c-eat">饭</div>
+    <div class="cell c-eat">路</div>
+    <div class="cell c-hw">作</div>
+    <div class="cell c-hw">作</div>
+    <div class="cell c-you">你</div>
+    <div class="cell c-you">你</div>
+    <div class="cell c-you">你</div>
+    <div class="cell c-eat">澡</div>
+  </div>
+  <div class="legend">
+    <span class="l-sleep">睡觉 8h</span>
+    <span class="l-school">学校 10h</span>
+    <span class="l-eat">吃饭/路上/洗澡 3h</span>
+    <span class="l-hw">作业 2h</span>
+    <span class="l-you">你的 3h</span>
+  </div>
+  <div class="you-note">一天 24 格，系统自动拿走 21 格。发光的只有 3 格。</div>
+</div>
+
+<!-- 副本二：高考 -->
+<div class="section">
+  <div class="section-title">副本二：高考 · 预告片</div>
+  <div class="bigbar">
+    <div class="used" style="width:68.4%"></div>
+    <div class="left-nominal" style="width:27.6%"></div>
+    <div class="left-real" style="width:4%"></div>
+  </div>
+  <div class="bar-labels">
+    <span style="color:#6e7681">■ 已消耗 68.4%</span>
+    <span style="color:#8b949e">■ 名义剩 31.6%</span>
+  </div>
+  <div class="bar-note">真正属于你的：4%</div>
+</div>
+
+<!-- 底部 -->
+<div class="footer-box">
+  <div class="footer-num">37 天 × 3 格 = 111 格</div>
+  <div class="footer-text">到期中考，你的全部弹药就是这 111 格。</div>
+  <div class="footer-compare">别人用这 111 格刷题。<br>你用这 111 格长根。</div>
+</div>
+
+</body>
+</html>

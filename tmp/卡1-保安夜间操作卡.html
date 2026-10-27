@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Noto Serif CJK SC","Noto Sans CJK SC",serif;
+    width: 210mm; height: 297mm;
+    display: flex; flex-direction: column;
+  }
+  .top {
+    background: linear-gradient(135deg,#1a3a5c,#2d5a87);
+    color:#fff; text-align:center;
+    padding: 7mm 14mm 5mm 14mm;
+  }
+  .top h1 { font-size:24pt; letter-spacing:.1em; }
+  .top .time {
+    display:inline-block; margin-top:3mm;
+    background:#c9a45c; color:#1a3a5c;
+    font-weight:bold; font-size:13pt;
+    padding:3px 18px; border-radius:20px;
+  }
+  .step {
+    margin: 4mm 14mm 0 14mm;
+    border:2px solid #1a3a5c; border-radius:8px;
+    overflow:hidden;
+  }
+  .step .head {
+    background:#1a3a5c; color:#fff;
+    font-size:15pt; font-weight:bold;
+    padding: 2.5mm 5mm;
+  }
+  .step .content {
+    padding: 3mm 5mm; font-size:12.5pt; line-height:1.65;
+  }
+  .step .content b { color:#b3452e; }
+  .num {
+    display:inline-block; width:26px; height:26px;
+    background:#c9a45c; color:#1a3a5c;
+    border-radius:50%; text-align:center;
+    font-weight:bold; margin-right:4px;
+  }
+  .fast {
+    margin: 4mm 14mm 0 14mm;
+    background:#eaf2e5; border:1.5px solid #7ba668;
+    border-radius:8px; padding:3.5mm 5mm;
+  }
+  .fast h2 { color:#3e6b2f; font-size:13.5pt; margin-bottom:2mm; }
+  .fast .plate {
+    font-size:15pt; font-weight:bold; color:#1a3a5c;
+    letter-spacing:.05em; line-height:1.8;
+  }
+  .fast .note { font-size:11pt; color:#555; margin-top:1mm; }
+  .rules {
+    margin: 4mm 14mm 0 14mm;
+    background:#fdf3e7; border:1.5px solid #d4a04a;
+    border-radius:8px; padding:3.5mm 5mm; font-size:12pt; line-height:1.6;
+  }
+  .rules b { color:#8a5a00; }
+  .foot {
+    margin-top:auto; text-align:center;
+    padding: 5mm 14mm 8mm 14mm;
+    font-size:11pt; color:#333; line-height:1.7;
+  }
+  .foot .org { font-weight:bold; font-size:12pt; }
+  .badge {
+    display:inline-block; border:1.5px dashed #888; border-radius:50%;
+    width:26mm; height:26mm; line-height:26mm;
+    color:#999; font-size:10pt; margin-top:3mm;
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <h1>夜间值班操作卡</h1>
+  <div class="time">每晚 22:00 — 次日 6:00</div>
+</div>
+
+<div class="step">
+  <div class="head"><span class="num">1</span>听到喇叭 / 喊声 / 闪灯 —— 30秒内回应</div>
+  <div class="content">
+    立即开窗或到场，说：<b>"师傅，我给您开闸。夜间请勿按喇叭，喊一声或闪灯我就开。"</b>
+  </div>
+</div>
+
+<div class="step">
+  <div class="head"><span class="num">2</span>登记一笔</div>
+  <div class="content">
+    在《夜间喇叭登记表》记下：<b>日期、时间、车牌、有没有当场劝阻</b>。同一车牌当月第2次→报经理；第3次→经理约谈车主。
+  </div>
+</div>
+
+<div class="step">
+  <div class="head"><span class="num">3</span>告诉车主夜间叫门三招</div>
+  <div class="content">
+    ① <b>摇窗喊保安</b>（24小时在岗）　② <b>闪两下大灯</b>　③ <b>走西门</b>（路宽识别快，不吵居民楼）
+  </div>
+</div>
+
+<div class="fast">
+  <h2>重点车牌 · 快速放行名单</h2>
+  <div class="plate">闽D5NZ39　（识别时"D"常变"O"）</div>
+  <div class="note">这些车一到就<b>主动人工开闸</b>，不等识别、不让车等、自然没人按喇叭。有新发现的误识车牌，随时加进来。</div>
+</div>
+
+<div class="rules">
+  <b>被车主骂了怎么办？</b>不还口、不冲突。默默记下车牌和时间，报给经理——<b>经理负责联系车主，你只负责登记。</b>
+</div>
+
+<div class="foot">
+  <div class="org">融信服务（融信〔福建〕物业管理有限公司漳州开发区分公司）</div>
+  <div>客户服务中心 · 贴保安亭 · 建议塑封</div>
+  <div class="badge">盖章处</div>
+</div>
+
+</body>
+</html>

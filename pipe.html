@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>管道 · 幂次管理</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a1a;
+            --card: #141428;
+            --border: #2a2a4a;
+            --text: #ffffff;
+            --text2: #8888aa;
+            --accent: #00d4aa;
+            --invest: #00ff88;
+            --consume: #ff4466;
+            --gold: #ffd700;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, "PingFang SC", "Noto Sans SC", sans-serif;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(10,10,26,0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 16px;
+        }
+
+        .stat {
+            flex: 1;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--gold);
+        }
+
+        .stat-value.invest { color: var(--invest); }
+        .stat-value.consume { color: var(--consume); }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text2);
+            margin-top: 2px;
+        }
+
+        .main { padding: 16px; max-width: 500px; margin: 0 auto; }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            color: var(--accent);
+            margin-bottom: 14px;
+            font-weight: bold;
+        }
+
+        .quote-box {
+            background: rgba(0,212,170,0.08);
+            border-left: 3px solid var(--accent);
+            padding: 12px 14px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 16px;
+            font-size: 13px;
+            color: var(--text2);
+            line-height: 1.6;
+        }
+
+        .step { margin-bottom: 16px; }
+
+        .step-label {
+            font-size: 13px;
+            color: var(--text2);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .num {
+            display: inline-flex;
+            width: 22px;
+            height: 22px;
+            background: var(--accent);
+            color: var(--bg);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 15px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input:focus, select:focus { border-color: var(--accent); }
+
+        .type-select { display: flex; gap: 10px; }
+
+        .type-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .type-btn.active.invest {
+            border-color: var(--invest);
+            background: rgba(0,255,136,0.1);
+            color: var(--invest);
+        }
+
+        .type-btn.active.consume {
+            border-color: var(--consume);
+            background: rgba(255,68,102,0.1);
+            color: var(--consume);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+
+        .submit-btn:active { transform: scale(0.98); opacity: 0.9; }
+
+        .network-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .network-title {
+            font-size: 15px;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        #networkSVG {
+            width: 100%;
+            height: 280px;
+            display: block;
+        }
+
+        .history-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+        }
+
+        .history-date {
+            font-size: 12px;
+            color: var(--text2);
+            margin: 12px 0 8px;
+            font-weight: bold;
+        }
+
+        .history-root { font-size: 15px; font-weight: bold; margin-bottom: 3px; }
+        .history-action { font-size: 13px; color: var(--text2); }
+        .history-conn { font-size: 12px; color: var(--accent); margin-top: 4px; }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: var(--text2);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .export-btn {
+            padding: 8px 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text2);
+            font-size: 13px;
+            cursor: pointer;
+            margin: 4px;
+        }
+
+        @keyframes growPop {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .pop { animation: growPop 0.3s ease-out; }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--bg);
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .toast.show { opacity: 1; }
+
+        .data-btns { text-align: center; margin-top: 16px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔄 管道</h1>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value" id="totalRoots">0</div>
+                <div class="stat-label">根总数</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="networkEffect">×1.0</div>
+                <div class="stat-label">网络效应</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="todayFactor">—</div>
+                <div class="stat-label">今日因子</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="quote-box">
+            不是打卡你做了什么，是记录什么留下来了。<br>
+            打卡 = 1+1+1 = 加法。管道 = 根接根 = 乘法。<br>
+            根永远在。断了也在。
+        </div>
+
+        <div class="card" id="inputCard">
+            <div class="card-title">每日三问</div>
+
+            <div class="step">
+                <div class="step-label"><span class="num">1</span>今天做了什么？</div>
+                <input type="text" id="q1" placeholder="例：学了一道几何题 / 弹了半小时琴 / 跟老公讨论延迟满足">
+            </div>
+
+            <div class="step">
+                <div class="step-label"><span class="num">2</span>留下来了什么？（给根起个名）</div>
+                <input type="text" id="q2" placeholder="例：重叠问题的本质是容斥 / 延迟满足=乘法">
+            </div>
+
+            <div class="step">
+                <div class="step-label"><span class="num">3</span>接到了哪里？（接到已有根上）</div>
+                <select id="q3">
+                    <option value="">🌱 这是一个新根</option>
+                </select>
+            </div>
+
+            <div class="step">
+                <div class="step-label">这笔时间是投资还是消费？</div>
+                <div class="type-select">
+                    <button class="type-btn invest" onclick="setType('invest')">🟢 投资（留下了）</button>
+                    <button class="type-btn consume" onclick="setType('consume')">🔴 消费（花掉了）</button>
+                </div>
+            </div>
+
+            <button class="submit-btn" onclick="submit()">放进管道 →</button>
+        </div>
+
+        <div class="network-container">
+            <div class="network-title">🕸️ 根网络（越连越大）</div>
+            <svg id="networkSVG" viewBox="0 0 350 280"></svg>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📜 管道记录</div>
+            <div id="historyList"></div>
+        </div>
+
+        <div class="data-btns">
+            <button class="export-btn" onclick="exportData()">📥 导出备份</button>
+            <button class="export-btn" onclick="document.getElementById('importFile').click()">📤 导入</button>
+            <input type="file" id="importFile" style="display:none" accept=".json" onchange="importData(event)">
+        </div>
+    </div>
+
+    <div class="toast" id="toast">✅ 根已入管道</div>
+
+    <script>
+        let data = JSON.parse(localStorage.getItem('pipeData') || '{"roots":[],"nextId":1}');
+        let currentType = null;
+
+        function init() {
+            updateStats();
+            renderNetwork();
+            renderHistory();
+            updateConnectionOptions();
+        }
+
+        function setType(type) {
+            currentType = type;
+            document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.type-btn.' + type).classList.add('active');
+        }
+
+        function submit() {
+            const q1 = document.getElementById('q1').value.trim();
+            const q2 = document.getElementById('q2').value.trim();
+            const q3 = document.getElementById('q3').value;
+
+            if (!q1 || !q2) { showToast('❌ 先填前两个问题'); return; }
+            if (!currentType) { showToast('❌ 选投资还是消费'); return; }
+
+            const root = {
+                id: data.nextId++,
+                date: new Date().toISOString().split('T')[0],
+                action: q1,
+                name: q2,
+                connection: q3 ? parseInt(q3) : null,
+                type: currentType
+            };
+
+            data.roots.push(root);
+            save();
+
+            document.getElementById('q1').value = '';
+            document.getElementById('q2').value = '';
+            document.getElementById('q3').value = '';
+            setType(null);
+
+            updateStats();
+            renderNetwork();
+            renderHistory();
+            updateConnectionOptions();
+
+            const card = document.getElementById('inputCard');
+            card.classList.remove('pop'); void card.offsetWidth; card.classList.add('pop');
+            showToast('✅ 根已入管道');
+        }
+
+        function save() { localStorage.setItem('pipeData', JSON.stringify(data)); }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2000);
+        }
+
+        function updateStats() {
+            document.getElementById('totalRoots').textContent = data.roots.length;
+            const connected = data.roots.filter(r => r.connection !== null).length;
+            const effect = data.roots.length > 0 ? (1 + connected / data.roots.length).toFixed(1) : '1.0';
+            document.getElementById('networkEffect').textContent = '×' + effect;
+
+            const today = new Date().toISOString().split('T')[0];
+            const todayRoots = data.roots.filter(r => r.date === today);
+            const el = document.getElementById('todayFactor');
+            if (todayRoots.length > 0) {
+                const invests = todayRoots.filter(r => r.type === 'invest').length;
+                const consumes = todayRoots.filter(r => r.type === 'consume').length;
+                const factor = (1 + (invests - consumes) * 0.01).toFixed(2);
+                el.textContent = factor;
+                el.className = 'stat-value ' + (factor >= 1 ? 'invest' : 'consume');
+            } else { el.textContent = '—'; el.className = 'stat-value'; }
+        }
+
+        function updateConnectionOptions() {
+            const select = document.getElementById('q3');
+            select.innerHTML = '<option value="">🌱 这是一个新根</option>';
+            data.roots.slice(-20).reverse().forEach(r => {
+                const opt = document.createElement('option');
+                opt.value = r.id;
+                opt.textContent = r.name.substring(0, 20);
+                select.appendChild(opt);
+            });
+        }
+
+        function renderNetwork() {
+            const svg = document.getElementById('networkSVG');
+            svg.innerHTML = '';
+
+            if (data.roots.length === 0) {
+                svg.innerHTML = '<text x="175" y="140" text-anchor="middle" fill="#8888aa" font-size="13">管道还是空的，种下第一颗根吧 🌱</text>';
+                return;
+            }
+
+            const w = 350, h = 280, cx = w/2, cy = h/2;
+            const radius = 100;
+            const nodes = data.roots.slice(-15);
+            const positions = {};
+
+            nodes.forEach((r, i) => {
+                const angle = (2 * Math.PI * i) / nodes.length - Math.PI / 2;
+                positions[r.id] = { x: cx + radius * Math.cos(angle), y: cy + radius * Math.sin(angle) };
+            });
+
+            nodes.forEach(r => {
+                if (r.connection && positions[r.connection]) {
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', positions[r.id].x);
+                    line.setAttribute('y1', positions[r.id].y);
+                    line.setAttribute('x2', positions[r.connection].x);
+                    line.setAttribute('y2', positions[r.connection].y);
+                    line.setAttribute('stroke', '#00d4aa');
+                    line.setAttribute('stroke-width', '1.5');
+                    line.setAttribute('opacity', '0.35');
+                    svg.appendChild(line);
+                }
+            });
+
+            nodes.forEach(r => {
+                const pos = positions[r.id];
+                const color = r.type === 'invest' ? '#00ff88' : '#ff4466';
+                const childCount = data.roots.filter(x => x.connection === r.id).length;
+                const rSize = 7 + Math.min(childCount * 1.5, 7);
+
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', pos.x);
+                circle.setAttribute('cy', pos.y);
+                circle.setAttribute('r', rSize);
+                circle.setAttribute('fill', color);
+                circle.setAttribute('opacity', '0.85');
+                svg.appendChild(circle);
+
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', pos.x);
+                text.setAttribute('y', pos.y - rSize - 4);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('fill', '#aaaacc');
+                text.setAttribute('font-size', '9');
+                text.textContent = r.name.substring(0, 6);
+                svg.appendChild(text);
+            });
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('historyList');
+            if (data.roots.length === 0) {
+                list.innerHTML = '<div class="empty">管道还是空的<br>第一次记录从今天开始 🌱</div>';
+                return;
+            }
+
+            const groups = {};
+            data.roots.slice().reverse().forEach(r => {
+                if (!groups[r.date]) groups[r.date] = [];
+                groups[r.date].push(r);
+            });
+
+            let html = '';
+            Object.keys(groups).slice(0, 7).forEach(date => {
+                html += '<div class="history-date">📅 ' + date + '</div>';
+                groups[date].forEach(r => {
+                    const connName = r.connection ? (data.roots.find(x => x.id === r.connection)?.name || '') : '';
+                    html += '<div class="history-item">'
+                        + '<div class="history-root">' + (r.type === 'invest' ? '🟢' : '🔴') + ' ' + r.name + '</div>'
+                        + '<div class="history-action">' + r.action + '</div>'
+                        + (connName ? '<div class="history-conn">🔗 接到：' + connName + '</div>' : '')
+                        + '</div>';
+                });
+            });
+            list.innerHTML = html;
+        }
+
+        function exportData() {
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'pipe_backup_' + new Date().toISOString().split('T')[0] + '.json';
+            a.click();
+            showToast('📥 已导出');
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    data = JSON.parse(e.target.result);
+                    save(); init(); showToast('📤 导入成功');
+                } catch(err) { showToast('❌ 导入失败'); }
+            };
+            reader.readAsText(file);
+        }
+
+        init();
+    </script>
+</body>
+</html>

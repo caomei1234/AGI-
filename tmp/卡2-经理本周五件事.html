@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Noto Serif CJK SC","Noto Sans CJK SC",serif;
+    width: 210mm; height: 297mm;
+    display: flex; flex-direction: column;
+  }
+  .top {
+    background: linear-gradient(135deg,#1a3a5c,#2d5a87);
+    color:#fff; padding: 7mm 14mm 5mm 14mm;
+  }
+  .top h1 { font-size:21pt; letter-spacing:.05em; text-align:center; }
+  .top .from {
+    margin-top:2.5mm; text-align:center;
+    font-size:10.5pt; color:rgba(255,255,255,.85);
+  }
+  .bg {
+    margin: 4mm 14mm 0 14mm;
+    background:#f4f7fa; border-left:4px solid #c9a45c;
+    border-radius:0 6px 6px 0;
+    padding:3mm 5mm; font-size:11.5pt; line-height:1.6;
+  }
+  .bg b { color:#b3452e; }
+  .todo { margin: 4mm 14mm 0 14mm; }
+  .item {
+    display:flex; margin-bottom:3mm;
+    border:1.5px solid #1a3a5c; border-radius:8px;
+    overflow:hidden;
+  }
+  .item .left {
+    width:34mm; background:#1a3a5c; color:#fff;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:3mm; text-align:center;
+  }
+  .item .left .no { font-size:19pt; font-weight:900; color:#c9a45c; }
+  .item .left .deadline { font-size:10.5pt; margin-top:1mm; }
+  .item .right { flex:1; padding:2.5mm 4mm; font-size:11pt; line-height:1.55; }
+  .item .right h3 { font-size:12.5pt; color:#1a3a5c; margin-bottom:1mm; }
+  .cost { color:#b3452e; font-weight:bold; }
+  .sign {
+    margin: 3mm 14mm 0 14mm;
+    border:2px solid #1a3a5c; border-radius:8px;
+    padding:3.5mm 5mm; font-size:12pt;
+  }
+  .sign .line { margin: 2.5mm 0; }
+  .sign .blank { display:inline-block; border-bottom:1.5px solid #333; min-width:50mm; }
+  .foot {
+    margin-top:auto; text-align:center;
+    padding: 4mm 14mm 7mm 14mm;
+    font-size:10.5pt; color:#333; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <h1>本周落地五件事</h1>
+  <div class="from">业主：丁玲（2-606）｜ 2026年10月26日 ｜ 详见《投诉与整改建议函》</div>
+</div>
+
+<div class="bg">
+  <b>背景一句话：</b>两个月、八次12345投诉。噪音根源=道闸误识（"D"变"O"）+夜间无人应门。今早保安现场已确认，车主也承认"反映好多次没人管"。<b>设备的问题，不该让住户用睡眠兜底。</b>
+</div>
+
+<div class="todo">
+
+  <div class="item">
+    <div class="left"><div class="no">1</div><div class="deadline">今天</div></div>
+    <div class="right">
+      <h3>告示盖章张贴</h3>
+      电梯1张 ＋ 闸机口1张（<b>塑封</b>）＋ 公告栏1张。告示已代拟好（附后），只需盖章＋填日期。
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="left"><div class="no">2</div><div class="deadline">3天内</div></div>
+    <div class="right">
+      <h3>装补光灯</h3>
+      闸机识别区加1盏白光补光灯。<span class="cost">28-45元</span>。参数：220V／光控自动／IP66防水／白光4000-6000K，搜"停车场补光灯 车牌识别"。<br>
+      <b>为什么：</b>光线不足＋车灯眩光→"D"被误识成"O"（保安现场确认）。
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="left"><div class="no">3</div><div class="deadline">3天内</div></div>
+    <div class="right">
+      <h3>建误识车牌白名单</h3>
+      被识别错的车牌列成《快速放行名单》，保安看到直接人工开闸，不等识别。<br>
+      <b>首批已知：</b>闽D5NZ39（车主反映多次无果）。名单贴保安亭，随时增补。
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="left"><div class="no">4</div><div class="deadline">本周</div></div>
+    <div class="right">
+      <h3>入口加禁鸣标志牌</h3>
+      小区名称旁加"进入区域 禁止鸣笛"大型标志牌（保安建议）。<span class="cost">约100-300元</span>。进场前提前警示，比事后劝阻管用十倍。
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="left"><div class="no">5</div><div class="deadline">每晚</div></div>
+    <div class="right">
+      <h3>保安执行"三步走"</h3>
+      见《夜间值班操作卡》：听到喇叭30秒内回应 → 登记 → 告知三招（喊人／闪灯／西门）。<br>
+      <b>被辱骂不还口</b>，记车牌报经理，经理负责后续。
+    </div>
+  </div>
+
+</div>
+
+<div class="sign">
+  <b>经理确认：</b>以上五项收到，即日起执行。<br>
+  <div class="line">签字：<span class="blank"></span>　日期：<span class="blank" style="min-width:36mm"></span></div>
+  <div class="line">预计完成时间（逐项注明）：①＿＿＿ ②＿＿＿ ③＿＿＿ ④＿＿＿ ⑤即日起</div>
+</div>
+
+<div class="foot">
+  附：① 电梯告示（盖章用）　② 保安操作卡（塑封贴岗亭）　③ 夜间喇叭登记表（多份放岗亭）<br>
+  如一周内无实质进展，本人将继续通过12345（住建口）、报警、诉讼等途径推进。
+</div>
+
+</body>
+</html>

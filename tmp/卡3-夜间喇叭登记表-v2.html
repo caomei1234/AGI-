@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4 landscape; margin: 0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Noto Serif CJK SC","Noto Sans CJK SC",serif;
+    width: 297mm; height: 210mm;
+    display: flex; flex-direction: column;
+    padding: 7mm 10mm 6mm 10mm;
+  }
+  .head {
+    background: linear-gradient(135deg,#1a3a5c,#2d5a87);
+    color:#fff; text-align:center;
+    padding: 3.5mm 10mm 3mm 10mm; border-radius:6px;
+    margin-bottom:3.5mm;
+  }
+  .head h1 { font-size:17pt; letter-spacing:.15em; display:inline-block; }
+  .head .time {
+    display:inline-block; margin-left:6mm;
+    background:#c9a45c; color:#1a3a5c; font-weight:bold;
+    font-size:11pt; padding:2px 14px; border-radius:16px; vertical-align:middle;
+  }
+  .head .sub {
+    margin-top:1.8mm; font-size:10pt; color:rgba(255,255,255,.9);
+  }
+  table { width:100%; border-collapse:collapse; }
+  th, td { border:1.2px solid #444; }
+  th {
+    background:#1a3a5c; color:#fff;
+    font-size:11pt; padding:2mm 1mm;
+  }
+  td { font-size:12pt; height:8mm; text-align:center; }
+  tr:nth-child(even) td { background:#f7f9fb; }
+  .tip { margin-top:3.5mm; display:flex; gap:4mm; }
+  .box {
+    flex:1.25; background:#fdf3e7; border:1.5px solid #d4a04a;
+    border-radius:6px; padding:2.5mm 4mm;
+    font-size:10.5pt; color:#8a5a00; line-height:1.5;
+  }
+  .box2 {
+    flex:1; background:#eaf2e5; border:1.5px solid #7ba668;
+    border-radius:6px; padding:2.5mm 4mm;
+    font-size:10.5pt; color:#3e6b2f; line-height:1.5;
+  }
+  .box b, .box2 b { display:block; font-size:11.5pt; margin-bottom:1mm; }
+  .plate { font-size:13pt; font-weight:bold; letter-spacing:.05em; }
+  .foot {
+    margin-top:auto; text-align:center;
+    font-size:9.5pt; color:#666; padding-top:2mm;
+  }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <h1>夜间喇叭登记表</h1>
+  <div class="time">每晚 22:00 — 次日 6:00</div>
+  <div class="sub">听到喇叭 / 喊声 / 闪灯 → 30秒内回应 → 登记 → 告知三招（喊人 · 闪灯 · 西门）</div>
+</div>
+
+<table>
+<tr>
+  <th style="width:5%">序号</th>
+  <th style="width:11%">日期</th>
+  <th style="width:8%">时间</th>
+  <th style="width:14%">车牌号</th>
+  <th style="width:10%">车辆类型</th>
+  <th style="width:7%">入口</th>
+  <th style="width:9%">当场劝阻</th>
+  <th style="width:9%">当月累计</th>
+  <th style="width:17%">处置方式</th>
+  <th style="width:10%">经办人</th>
+</tr>
+<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>12</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>13</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>14</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>15</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<div class="tip">
+  <div class="box"><b>升级规则</b>同一车牌当月第2次 → 报经理，次日提醒车主；第3次 → 书面提醒单；再犯 → 经理约谈。<u>经办人只登记，后续全由经理负责。</u></div>
+  <div class="box2"><b>快速放行名单</b>（识别易错车牌，看到直接人工开闸）<div class="plate">闽D5NZ39　＿＿＿＿＿＿</div></div>
+</div>
+
+<div class="foot">融信服务 客户服务中心 · 每月最后一周统计（次数／车辆数／下降幅度）报经理，业主群公示（隐去完整车牌）</div>
+
+</body>
+</html>
